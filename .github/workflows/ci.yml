@@ -1,6 +1,3 @@
-name: test
-x:
-  y: 1
 name: Kiểm thử tự động
 on:
   push:

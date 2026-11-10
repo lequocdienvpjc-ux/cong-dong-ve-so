@@ -1,0 +1,38 @@
+name: Xuất bản ứng dụng web (PWA + quản trị)
+on:
+  push:
+    branches: [main]
+    paths: ['source_code/frontend/**', 'source_code/shared/**', '.github/workflows/deploy-web.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency: { group: pages, cancel-in-progress: true }
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: source_code/frontend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: source_code/frontend/package-lock.json }
+      - run: npm ci
+      - run: npm test
+      - name: Build
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}/
+          VITE_APP_VERSION: 1.0.${{ github.run_number }}
+        run: npm run build && cp dist/index.html dist/404.html && touch dist/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: source_code/frontend/dist }
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: '${{ steps.d.outputs.page_url }}' }
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,16 @@
+name: Giữ database hoạt động
+# Gói Free của Supabase tạm dừng dự án sau 7 ngày không có truy cập. Workflow này gọi API mỗi ngày.
+on:
+  schedule: [{ cron: '17 1 * * *' }]
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gọi API công khai
+        run: |
+          URL=$(grep -oP "PUBLIC_SUPABASE_URL = '\K[^']+" source_code/frontend/src/config.public.js)
+          KEY=$(grep -oP "PUBLIC_SUPABASE_KEY = '\K[^']+" source_code/frontend/src/config.public.js)
+          code=$(curl -s -o /dev/null -w "%{http_code}" "$URL/rest/v1/public_config?select=android_version" -H "apikey: $KEY")
+          echo "HTTP $code"; test "$code" = "200"

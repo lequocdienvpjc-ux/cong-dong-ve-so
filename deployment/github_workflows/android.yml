@@ -1,0 +1,77 @@
+name: Build APK Android
+on:
+  push:
+    branches: [main]
+    paths: ['source_code/frontend/**', 'source_code/shared/**', '.github/workflows/android.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: source_code/frontend } }
+    env:
+      VERSION_NAME: 1.0.${{ github.run_number }}
+      VERSION_CODE: ${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: source_code/frontend/package-lock.json }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 21 }
+      - uses: android-actions/setup-android@v3
+      - run: npm ci
+      - name: Build web cho APK
+        env: { BASE_PATH: './', CAPACITOR: '1', VITE_APP_VERSION: '${{ env.VERSION_NAME }}' }
+        run: npm run build
+      - name: Tạo dự án Android + biểu tượng từ logo
+        run: |
+          npx cap add android
+          npx capacitor-assets generate --android --iconBackgroundColor '#ffffff' --splashBackgroundColor '#ffffff'
+          npx cap sync android
+          sed -i "s/versionCode [0-9]*/versionCode ${VERSION_CODE}/; s/versionName \"[^\"]*\"/versionName \"${VERSION_NAME}\"/" android/app/build.gradle
+          # Quyền vị trí cho chức năng "gần tôi"
+          sed -i 's#<uses-permission android:name="android.permission.INTERNET" />#<uses-permission android:name="android.permission.INTERNET" />\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />#' android/app/src/main/AndroidManifest.xml
+      - name: Khóa ký ứng dụng
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > android/app/release.keystore
+            echo "SIGN_MODE=release" >> $GITHUB_ENV
+          else
+            echo "::warning::Chưa có secret ANDROID_KEYSTORE_B64 - APK được ký bằng khóa tạm (debug). Hãy thêm secret để các bản cập nhật cài đè được."
+            echo "SIGN_MODE=debug" >> $GITHUB_ENV
+          fi
+      - name: Build APK
+        working-directory: source_code/frontend/android
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          chmod +x gradlew
+          if [ "$SIGN_MODE" = "release" ]; then
+            ./gradlew assembleRelease --no-daemon
+            BT=$ANDROID_HOME/build-tools/$(ls $ANDROID_HOME/build-tools | sort -V | tail -1)
+            $BT/zipalign -p -f 4 app/build/outputs/apk/release/app-release-unsigned.apk aligned.apk
+            $BT/apksigner sign --ks app/release.keystore --ks-key-alias congdongveso \
+              --ks-pass env:KEYSTORE_PASSWORD --key-pass env:KEYSTORE_PASSWORD --out CongDongVeSo.apk aligned.apk
+          else
+            ./gradlew assembleDebug --no-daemon
+            cp app/build/outputs/apk/debug/app-debug.apk CongDongVeSo.apk
+          fi
+          ls -la CongDongVeSo.apk
+      - uses: actions/upload-artifact@v4
+        with: { name: CongDongVeSo-${{ env.VERSION_NAME }}, path: source_code/frontend/android/CongDongVeSo.apk }
+      - name: Phát hành trên GitHub Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION_NAME }}
+          name: Cộng Đồng Vé Số ${{ env.VERSION_NAME }}
+          body: |
+            Bản Android ${{ env.VERSION_NAME }} (ký: ${{ env.SIGN_MODE }}).
+            Link tải cố định bản mới nhất: https://github.com/${{ github.repository }}/releases/latest/download/CongDongVeSo.apk
+          files: source_code/frontend/android/CongDongVeSo.apk
+          make_latest: true

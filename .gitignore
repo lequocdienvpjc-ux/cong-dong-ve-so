@@ -1,0 +1,8 @@
+node_modules/
+dist/
+source_code/frontend/android/
+*.keystore
+*.jks
+.env
+.env.*
+database/backup/

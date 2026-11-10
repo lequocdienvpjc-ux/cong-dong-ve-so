@@ -1,0 +1,7 @@
+{
+  "appId": "vn.congdongveso.app",
+  "appName": "Cộng Đồng Vé Số",
+  "webDir": "dist",
+  "android": { "allowMixedContent": false },
+  "server": { "androidScheme": "https" }
+}

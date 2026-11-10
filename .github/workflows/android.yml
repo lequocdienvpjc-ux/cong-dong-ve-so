@@ -64,7 +64,9 @@ jobs:
           fi
           ls -la CongDongVeSo.apk
       - uses: actions/upload-artifact@v4
-        with: { name: CongDongVeSo-${{ env.VERSION_NAME }}, path: source_code/frontend/android/CongDongVeSo.apk }
+        with:
+          name: CongDongVeSo-${{ env.VERSION_NAME }}
+          path: source_code/frontend/android/CongDongVeSo.apk
       - name: Phát hành trên GitHub Releases
         uses: softprops/action-gh-release@v2
         with:

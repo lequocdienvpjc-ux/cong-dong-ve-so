@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import L from 'leaflet';
 import { supabase, errText } from '../lib/supabase.js';
-import { getPosition, PROVINCE_CENTER, VN_CENTER } from '../lib/geo.js';
+import { getPosition } from '../lib/geo.js';
 import { MAP_KINDS, PROVINCES, formatKm, normalizePhone } from '@shared/constants.js';
 import { Avatar } from '../components/ui.jsx';
+import MapView from '../components/MapView.jsx';
 
 // Nhóm bộ lọc hiển thị cho người dùng
 const FILTERS = {
@@ -17,11 +17,6 @@ const FILTERS = {
 };
 const RADII = [2, 5, 10, 20, 50];
 
-function pinIcon(kind) {
-  const k = MAP_KINDS[kind] || MAP_KINDS.thanh_vien;
-  return L.divIcon({ className: '', html: `<div class="pin" style="background:${k.color}">${k.icon}</div>`, iconSize: [38, 38], iconAnchor: [19, 19] });
-}
-
 export default function MapPage() {
   const [sp, setSp] = useSearchParams();
   const filter = sp.get('loai') || '';
@@ -33,9 +28,6 @@ export default function MapPage() {
   const [items, setItems] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const mapEl = useRef(null);
-  const map = useRef(null);
-  const layer = useRef(null);
 
   useEffect(() => {
     getPosition().then((p) => { setMe(p); setGpsAsked(true); });
@@ -63,42 +55,6 @@ export default function MapPage() {
     const ks = FILTERS[filter]?.kinds;
     return ks ? items.filter((i) => ks.includes(i.kind)) : items;
   }, [items, filter]);
-
-  // Khởi tạo bản đồ
-  useEffect(() => {
-    if (view !== 'map' || !mapEl.current || map.current) return;
-    map.current = L.map(mapEl.current, { zoomControl: true }).setView(VN_CENTER, 6);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19, attribution: '&copy; OpenStreetMap',
-    }).addTo(map.current);
-    layer.current = L.layerGroup().addTo(map.current);
-    return () => { map.current?.remove(); map.current = null; };
-  }, [view]);
-
-  // Vẽ điểm
-  useEffect(() => {
-    if (view !== 'map' || !map.current) return;
-    layer.current.clearLayers();
-    const pts = [];
-    if (me && !province) {
-      L.marker([me.lat, me.lng], { icon: L.divIcon({ className: '', html: '<div class="me-pin"></div>', iconSize: [22, 22] }) })
-        .bindPopup('Vị trí của bạn').addTo(layer.current);
-      pts.push([me.lat, me.lng]);
-    }
-    shown.forEach((i) => {
-      if (i.lat == null) return;
-      const phone = i.phone ? normalizePhone(i.phone) : '';
-      const html = `<b>${escapeHtml(i.name)}</b><br>${MAP_KINDS[i.kind]?.label || ''}${i.distance_km != null ? ' · ' + formatKm(i.distance_km) : ''}` +
-        (i.address ? `<br>${escapeHtml(i.address)}` : '') +
-        (phone ? `<br><a href="tel:${phone}" style="font-size:1.1em;font-weight:700">📞 Gọi ${phone}</a>` : '') +
-        `<br><a href="#/thanh-vien/${i.owner_id}">Xem hồ sơ</a>`;
-      L.marker([i.lat, i.lng], { icon: pinIcon(i.kind) }).bindPopup(html).addTo(layer.current);
-      pts.push([i.lat, i.lng]);
-    });
-    if (pts.length > 1) map.current.fitBounds(pts, { padding: [30, 30], maxZoom: 15 });
-    else if (pts.length === 1) map.current.setView(pts[0], 14);
-    else if (province && PROVINCE_CENTER[province]) map.current.setView(PROVINCE_CENTER[province], 11);
-  }, [shown, me, province, view]);
 
   const setFilter = (k) => { const n = new URLSearchParams(sp); if (k) n.set('loai', k); else n.delete('loai'); setSp(n, { replace: true }); };
 
@@ -138,7 +94,7 @@ export default function MapPage() {
         {loading && <span className="muted small">Đang tải…</span>}
       </div>
 
-      {view === 'map' ? <div ref={mapEl} className="map" /> : (
+      {view === 'map' ? <MapView items={shown} me={me} province={province} /> : (
         <div>
           {shown.length === 0 && !loading && <p className="muted">Chưa có ai trong khu vực này. Hãy mở rộng khoảng cách hoặc chọn tỉnh khác.</p>}
           {shown.map((i) => <ResultCard key={i.item_type + i.id} i={i} />)}
@@ -170,6 +126,3 @@ export function ResultCard({ i }) {
   );
 }
 
-function escapeHtml(s = '') {
-  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

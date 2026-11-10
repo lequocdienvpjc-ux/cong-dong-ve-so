@@ -54,6 +54,9 @@ export default function Me() {
 
   const deleteAccount = async () => {
     if (!confirm('Xóa vĩnh viễn tài khoản và toàn bộ dữ liệu của bạn? Không thể khôi phục.')) return;
+    // Xóa ảnh đại diện đã tải lên trước (bảng dữ liệu được xóa theo tài khoản ở phía server)
+    const { data: files } = await supabase.storage.from('avatars').list(user.id, { limit: 100 });
+    if (files?.length) await supabase.storage.from('avatars').remove(files.map((f) => `${user.id}/${f.name}`));
     const { error } = await supabase.rpc('delete_my_account');
     if (error) return setState({ error });
     await signOut();
@@ -113,7 +116,7 @@ export default function Me() {
       <div className="card">
         <Field label="Số điện thoại"><input type="tel" inputMode="tel" value={f.phone || ''} onChange={(e) => set('phone', e.target.value)} placeholder="0912345678" /></Field>
         <label className="check"><input type="checkbox" checked={f.show_phone} onChange={(e) => set('show_phone', e.target.checked)} />
-          Cho mọi người thấy số điện thoại của tôi (nếu không chọn, chỉ người đã kết nối mới thấy).</label>
+          Cho mọi người thấy số điện thoại của tôi (nếu không chọn, không ai thấy số của tôi).</label>
         <label className="check"><input type="checkbox" checked={f.show_location} onChange={(e) => set('show_location', e.target.checked)} />
           Hiện tôi trên bản đồ cộng đồng (vị trí làm tròn khoảng 100–500 m).</label>
         <button type="button" className="btn secondary block" onClick={useGps}>📍 Cập nhật vị trí hiện tại của tôi</button>
@@ -135,6 +138,7 @@ export default function Me() {
       <h2>Tài khoản</h2>
       <div className="stack">
         <Link className="btn secondary block" to="/doi-mat-khau">🔑 Đổi mật khẩu</Link>
+        <Link className="btn ghost block" to="/gioi-thieu">ℹ️ Giới thiệu &amp; Quy định</Link>
         <button type="button" className="btn ghost block" onClick={signOut}>Đăng xuất</button>
         <button type="button" className="btn ghost block" style={{ color: 'var(--red)' }} onClick={deleteAccount}>Xóa tài khoản của tôi</button>
       </div>

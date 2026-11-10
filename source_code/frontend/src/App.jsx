@@ -57,7 +57,8 @@ export default function App() {
             <Route path="/diem-cua-toi" element={<RequireAuth><MyPlaces /></RequireAuth>} />
             <Route path="/thong-bao" element={<RequireAuth><Notifications /></RequireAuth>} />
             <Route path="/ket-noi" element={<RequireAuth><Connections /></RequireAuth>} />
-            <Route path="/quy-dinh" element={<Rules />} />
+            <Route path="/gioi-thieu" element={<Rules part={1} />} />
+            <Route path="/quy-dinh" element={<Rules part={2} />} />
             <Route path="/cai-dat-app" element={<Install />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

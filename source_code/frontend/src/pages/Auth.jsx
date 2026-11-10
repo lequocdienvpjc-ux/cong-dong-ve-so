@@ -44,7 +44,8 @@ export default function Auth() {
 
   return (
     <div>
-      <h1>{mode === 'login' ? 'Đăng nhập' : mode === 'register' ? 'Đăng ký thành viên' : 'Quên mật khẩu'}</h1>
+      <img className="page-logo" src={import.meta.env.BASE_URL + 'logo.png'} alt="Logo Cộng Đồng Vé Số" />
+      <h1 className="center">{mode === 'login' ? 'Đăng nhập' : mode === 'register' ? 'Đăng ký thành viên' : 'Quên mật khẩu'}</h1>
       <div className="row" style={{ marginBottom: 12 }}>
         <button className={'btn sm ' + (mode === 'login' ? '' : 'secondary')} onClick={() => setMode('login')}>Đăng nhập</button>
         <button className={'btn sm ' + (mode === 'register' ? '' : 'secondary')} onClick={() => setMode('register')}>Đăng ký</button>

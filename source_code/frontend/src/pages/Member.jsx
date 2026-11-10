@@ -63,7 +63,7 @@ export default function Member() {
 
       <div className="card stack">
         {callNum ? <a className="btn block call" href={`tel:${callNum}`}>📞 Gọi {callNum}</a>
-          : <p className="muted" style={{ margin: 0 }}>Thành viên chưa công khai số điện thoại. Hãy gửi yêu cầu kết nối; khi được đồng ý bạn sẽ thấy số.</p>}
+          : <p className="muted" style={{ margin: 0 }}>Thành viên chưa bật hiển thị số điện thoại. Bạn có thể gửi yêu cầu kết nối kèm lời nhắn để làm quen.</p>}
         {!user && <Link className="btn block secondary" to="/dang-nhap">Đăng nhập để kết nối</Link>}
         {user && user.id !== id && !conn && (
           <>
@@ -84,7 +84,7 @@ export default function Member() {
           {pl.note && <div className="small">{pl.note}</div>}
           <div className="row" style={{ marginTop: 8 }}>
             {pl.phone && <a className="btn sm call" href={`tel:${normalizePhone(pl.phone)}`}>📞 Gọi</a>}
-            {pl.lat && <a className="btn sm secondary" target="_blank" rel="noreferrer" href={`https://www.openstreetmap.org/?mlat=${pl.lat}&mlon=${pl.lng}#map=17/${pl.lat}/${pl.lng}`}>🗺️ Xem bản đồ</a>}
+            {pl.lat && <a className="btn sm secondary" target="_blank" rel="noreferrer" href={`https://www.google.com/maps/search/?api=1&query=${pl.lat},${pl.lng}`}>🗺️ Xem bản đồ</a>}
           </div>
           <div style={{ marginTop: 8 }}><ReportButton type="place" id={pl.id} /></div>
         </div>

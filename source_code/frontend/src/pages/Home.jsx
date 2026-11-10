@@ -47,7 +47,7 @@ export default function Home() {
         Không đăng dự đoán kết quả xổ số.
       </div>
       <p className="footer-note">
-        <Link to="/quy-dinh">Quy định &amp; quyền riêng tư</Link> · <Link to="/cai-dat-app">Cài ứng dụng</Link>
+        <Link to="/gioi-thieu">Giới thiệu</Link> · <Link to="/quy-dinh">Quy định &amp; quyền riêng tư</Link> · <Link to="/cai-dat-app">Cài ứng dụng</Link>
       </p>
     </div>
   );

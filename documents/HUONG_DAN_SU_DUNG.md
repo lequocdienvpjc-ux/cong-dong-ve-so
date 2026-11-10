@@ -26,13 +26,13 @@
 
 ## 4. Hồ sơ của tôi
 - Chọn một hoặc nhiều vai trò: đại lý lớn, đại lý cấp dưới, bán dạo, bán cố định, người mua, người muốn hỗ trợ.
-- **Số điện thoại** chỉ hiện công khai khi bật "Cho mọi người thấy số điện thoại". Nếu không bật, chỉ người đã kết nối mới thấy.
+- **Số điện thoại** chỉ hiện khi bật "Cho mọi người thấy số điện thoại". Nếu không bật, không ai thấy số (kể cả người đã kết nối).
 - **Hiện tôi trên bản đồ**: bật rồi bấm "Cập nhật vị trí hiện tại". Vị trí được làm tròn 100–500 m.
 - **Điểm bán / đại lý của tôi**: đứng tại điểm bán, bấm "Lấy vị trí" để ghim đúng chỗ cho người mua tìm tới.
 - Có thể **xóa tài khoản** và toàn bộ dữ liệu bất cứ lúc nào.
 
 ## 5. Kết nối và tương trợ
-- Vào hồ sơ một người → **Gửi yêu cầu kết nối**. Khi họ đồng ý, hai bên thấy số điện thoại của nhau.
+- Vào hồ sơ một người → **Gửi yêu cầu kết nối**. Khi họ đồng ý, hai bên có trong danh sách kết nối; số điện thoại chỉ hiện nếu người đó bật cho phép.
 - **Bảng tương trợ**: đăng "Cần giúp đỡ", "Muốn giúp đỡ", "Chia sẻ kinh nghiệm", "Thông tin hữu ích". Người muốn hỗ trợ cùng tỉnh nhận được thông báo.
 - Khi đã được giúp, người đăng bấm **✅ Đã được giúp**.
 

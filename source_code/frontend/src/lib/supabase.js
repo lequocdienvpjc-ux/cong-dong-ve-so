@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_KEY, PUBLIC_APP_URL } from '../config.public.js';
+import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_KEY, PUBLIC_APP_URL, PUBLIC_GOOGLE_MAPS_KEY } from '../config.public.js';
 
 // URL và khóa công khai (publishable/anon) của Supabase. Đây là khóa được thiết kế để
 // nằm trong ứng dụng phía người dùng; dữ liệu được bảo vệ bằng Row Level Security.
@@ -8,6 +8,8 @@ export const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || PUBLIC_SUPABASE
 export const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || PUBLIC_SUPABASE_KEY;
 export const APP_VERSION = import.meta.env.VITE_APP_VERSION || '1.0.0';
 export const PUBLIC_URL = import.meta.env.VITE_PUBLIC_URL || PUBLIC_APP_URL;
+
+export const GOOGLE_MAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_KEY || PUBLIC_GOOGLE_MAPS_KEY;
 
 export const configured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
 

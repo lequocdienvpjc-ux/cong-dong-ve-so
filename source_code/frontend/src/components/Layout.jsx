@@ -1,4 +1,6 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Capacitor } from '@capacitor/core';
+import { App as CapApp } from '@capacitor/app';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../lib/auth.jsx';
 import { supabase } from '../lib/supabase.js';
@@ -12,6 +14,28 @@ export default function Layout({ children }) {
   const [unread, setUnread] = useState(0);
   const [announce, setAnnounce] = useState('');
   const unreadMsg = useUnreadMessages(user);
+  const loc = useLocation();
+  const nav = useNavigate();
+  const isHome = loc.pathname === '/';
+  const TABS = ['/ban-do', '/ho-tro', '/ket-noi', '/toi'];
+  const goHome = () => nav('/', { replace: true });
+  const goBack = () => {
+    // Có trang trước trong ứng dụng thì lùi lại, không thì về trang chủ
+    if ((window.history.state?.idx ?? 0) > 0) nav(-1); else goHome();
+  };
+
+  // Nút Quay lại của điện thoại Android: ở trang chủ thì thoát, ở các mục chính thì về trang chủ
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return;
+    const h = CapApp.addListener('backButton', () => {
+      const p = window.location.hash.replace(/^#/, '').split('?')[0] || '/';
+      if (p === '/') CapApp.exitApp();
+      else if (TABS.includes(p)) nav('/', { replace: true });
+      else if ((window.history.state?.idx ?? 0) > 0) nav(-1);
+      else nav('/', { replace: true });
+    });
+    return () => { h.then((x) => x.remove()); };
+  }, [nav]);
 
   useEffect(() => {
     supabase.from('public_config').select('announcement').maybeSingle()
@@ -52,13 +76,19 @@ export default function Layout({ children }) {
       </header>
       <UpdateBanner />
       {announce && <div className="notice" style={{ borderRadius: 0, borderWidth: '0 0 2px' }}>📢 {announce}</div>}
+      {!isHome && (
+        <div className="subnav" role="navigation" aria-label="Điều hướng nhanh">
+          <button type="button" className="btn sm ghost" onClick={goBack}>← Quay lại</button>
+          <button type="button" className="btn sm secondary" onClick={goHome}>🏠 Về trang chủ</button>
+        </div>
+      )}
       <main className="page">{children}</main>
       <nav className="bottom-nav" aria-label="Điều hướng chính">
-        <NavLink to="/" end><span className="i">🏠</span>Trang chủ</NavLink>
-        <NavLink to="/ban-do"><span className="i">🗺️</span>Bản đồ</NavLink>
-        <NavLink to="/ho-tro"><span className="i">🤝</span>Hỗ trợ</NavLink>
-        <NavLink to="/ket-noi"><span className="i">👥</span>Kết nối</NavLink>
-        <NavLink to="/toi"><span className="i">👤</span>{user ? 'Của tôi' : 'Đăng nhập'}</NavLink>
+        <NavLink to="/" end replace><span className="i">🏠</span>Trang chủ</NavLink>
+        <NavLink to="/ban-do" replace><span className="i">🗺️</span>Bản đồ</NavLink>
+        <NavLink to="/ho-tro" replace><span className="i">🤝</span>Hỗ trợ</NavLink>
+        <NavLink to="/ket-noi" replace><span className="i">👥</span>Kết nối</NavLink>
+        <NavLink to="/toi" replace><span className="i">👤</span>{user ? 'Của tôi' : 'Đăng nhập'}</NavLink>
       </nav>
     </div>
   );

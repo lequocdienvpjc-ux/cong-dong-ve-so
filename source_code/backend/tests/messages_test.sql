@@ -157,4 +157,22 @@ do $$ begin
   raise notice 'M11 PASS: API công khai không lộ tin nhắn';
 end $$;
 reset role;
+
+-- C1: gửi phản hồi (bình luận) vào bài đăng được; phản hồi có từ cấm bị chặn
+set role authenticated;
+select pg_temp.as_user('11111111-0000-0000-0000-00000000000a');
+insert into public.posts(id, author_id, kind, title, body)
+  values ('44444444-0000-0000-0000-000000000001','11111111-0000-0000-0000-00000000000a','can_giup','Cần giúp chở hàng','Ai rảnh giúp tôi với');
+select pg_temp.as_user('11111111-0000-0000-0000-00000000000b');
+insert into public.comments(post_id, author_id, body)
+  values ('44444444-0000-0000-0000-000000000001','11111111-0000-0000-0000-00000000000b','alo, tôi giúp được');
+do $$ begin
+  assert (select count(*) from public.comments where post_id = '44444444-0000-0000-0000-000000000001') = 1, 'C1 FAIL';
+  begin insert into public.comments(post_id, author_id, body)
+      values ('44444444-0000-0000-0000-000000000001','11111111-0000-0000-0000-00000000000b','ai mua hộ vé không');
+    raise exception 'C1 FAIL từ cấm';
+  exception when others then if sqlerrm like 'C1 FAIL%' then raise; end if; end;
+  raise notice 'C1 PASS: gửi phản hồi được, phản hồi vi phạm bị chặn';
+end $$;
+reset role;
 select 'MESSAGES TESTS PASSED' as result;

@@ -24,6 +24,12 @@ export default function Home() {
         <Link className="big-btn b4" to="/ban-do?loai=diem_ban"><span className="ico">📍</span>TÌM ĐIỂM BÁN</Link>
       </div>
 
+      <Link to="/tiep-suc" className="card ts-entry" style={{ marginTop: 12 }}>
+        <span className="ico" aria-hidden="true">💛</span>
+        <span className="grow"><b>TIẾP SỨC CÙNG NGƯỜI BÁN VÉ SỐ</b><br /><span className="small muted">Định hướng phát triển – đang nghiên cứu</span></span>
+        <span aria-hidden="true" style={{ fontSize: '1.4rem' }}>›</span>
+      </Link>
+
       <form className="search" onSubmit={(e) => { e.preventDefault(); nav('/tim?q=' + encodeURIComponent(q)); }}>
         <div className="grow"><VoiceInput value={q} onChange={setQ} placeholder="Tìm tên, phường/xã, tỉnh…" aria-label="Tìm kiếm" /></div>
         <button className="btn" type="submit">Tìm</button>
@@ -34,11 +40,6 @@ export default function Home() {
         <Link className="btn secondary grow" to="/ho-tro">🤝 Bảng tương trợ</Link>
         {user && <Link className="btn secondary grow" to="/tin-nhan">💬 Tin nhắn</Link>}
       </div>
-
-      <Link to="/tiep-suc" className="card ts-entry" style={{ marginTop: 14 }}>
-        <span className="ico" aria-hidden="true">💛</span>
-        <span><b>TIẾP SỨC CÙNG NGƯỜI BÁN VÉ SỐ</b><br /><span className="small muted">Định hướng phát triển – đang nghiên cứu</span></span>
-      </Link>
 
       {!user && (
         <div className="card" style={{ marginTop: 14 }}>

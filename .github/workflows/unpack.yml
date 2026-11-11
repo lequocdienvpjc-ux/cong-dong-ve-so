@@ -16,6 +16,9 @@ jobs:
           test -f ma_nguon_day_len_github.tar.gz
           tar xzf ma_nguon_day_len_github.tar.gz --exclude='./.github' --exclude='.github' --exclude='.github/*'
           git rm -q ma_nguon_day_len_github.tar.gz
+          for p in deployment/patches/*.patch; do
+            if [ -f "$p" ]; then git apply "$p"; rm "$p"; fi
+          done
           if [ -f deployment/tao_icon_tu_logo.py ] && [ -f logo/logo_nguon_tao_icon.webp ]; then
             python3 -m pip install --quiet --break-system-packages pillow
             python3 deployment/tao_icon_tu_logo.py

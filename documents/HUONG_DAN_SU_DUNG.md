@@ -36,6 +36,21 @@
 - **Bảng tương trợ**: đăng "Cần giúp đỡ", "Muốn giúp đỡ", "Chia sẻ kinh nghiệm", "Thông tin hữu ích". Người muốn hỗ trợ cùng tỉnh nhận được thông báo.
 - Khi đã được giúp, người đăng bấm **✅ Đã được giúp**.
 
+## 5a. Nhắn tin riêng
+- Chỉ nhắn được với **người đã kết nối** (hai bên đã đồng ý kết nối).
+- Cách mở: vào **Kết nối** → bấm **💬 Nhắn tin** cạnh người đó, hoặc mở hồ sơ thành viên → **💬 Nhắn tin**.
+- Tìm lại các cuộc trò chuyện: bấm biểu tượng **💬** trên cùng (có số đỏ khi có tin chưa đọc) hoặc nút **💬 Tin nhắn** ở trang chủ.
+- Chỉ hai người trong cuộc trò chuyện xem được nội dung. Trang quản trị của ứng dụng cũng không xem được tin nhắn.
+- Để chống quấy rối: tối đa 15 tin/phút, không gửi cùng một nội dung cho nhiều người, không nhắn cho quá 20 người khác nhau trong 1 giờ. Tin có nội dung mua bán vé, dự đoán số sẽ bị chặn.
+- Nếu hủy kết nối: không gửi được tin mới, nhưng vẫn xem lại được lịch sử.
+
+## 5b. Nói thay vì gõ (micro 🎤)
+- Bấm **🎤** cạnh ô nhập → nút chuyển màu đỏ → nói nội dung → chữ hiện vào ô. Bấm lại để dừng.
+- Lần đầu điện thoại sẽ hỏi quyền dùng micro: chọn **Cho phép**.
+- Ứng dụng Android: dùng bộ nhận dạng giọng nói của Google trên điện thoại (cần mạng). Nếu báo thiếu tiếng Việt: Cài đặt → Ngôn ngữ → Nhập bằng giọng nói → thêm Tiếng Việt.
+- iPhone: nếu micro của ứng dụng không chạy, bấm vào ô nhập rồi dùng nút 🎤 trên bàn phím iPhone (cạnh phím cách).
+- Luôn xem lại chữ đã nhập và sửa nếu sai trước khi gửi.
+
 ## 6. Quy định
 Không đăng dự đoán kết quả ("soi cầu", "chốt số"), không rao mua bán / mua hộ / giao vé, không lừa đảo, không xin chuyển tiền.
 Thấy vi phạm, bấm **⚠️ Báo cáo vi phạm**.

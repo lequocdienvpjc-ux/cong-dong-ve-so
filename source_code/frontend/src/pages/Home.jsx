@@ -32,6 +32,7 @@ export default function Home() {
       <div className="row" style={{ marginTop: 14 }}>
         <Link className="btn secondary grow" to="/ban-do">🗺️ Bản đồ cộng đồng</Link>
         <Link className="btn secondary grow" to="/ho-tro">🤝 Bảng tương trợ</Link>
+        {user && <Link className="btn secondary grow" to="/tin-nhan">💬 Tin nhắn</Link>}
       </div>
 
       {!user && (

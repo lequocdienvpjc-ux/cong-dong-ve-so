@@ -1,0 +1,34 @@
+name: Giải nén mã nguồn tải lên
+on:
+  push:
+    paths: ['ma_nguon_day_len_github.tar.gz']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Giải nén (trừ thư mục .github)
+        run: |
+          test -f ma_nguon_day_len_github.tar.gz
+          tar xzf ma_nguon_day_len_github.tar.gz --exclude='./.github' --exclude='.github' --exclude='.github/*'
+          git rm -q ma_nguon_day_len_github.tar.gz
+          for p in deployment/patches/*.patch; do
+            if [ -f "$p" ]; then git apply "$p"; rm "$p"; fi
+          done
+          if [ -f deployment/tao_icon_tu_logo.py ] && [ -f logo/logo_nguon_tao_icon.webp ]; then
+            python3 -m pip install --quiet --break-system-packages pillow
+            python3 deployment/tao_icon_tu_logo.py
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Giải nén mã nguồn Cộng Đồng Vé Số"
+          git push
+      - name: Chạy kiểm thử, xuất bản web và build APK
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          for wf in ci.yml deploy-web.yml android.yml; do gh workflow run "$wf" --ref main || echo "Chưa có $wf"; done

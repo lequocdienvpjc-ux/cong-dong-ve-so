@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { openConversation } from '../lib/messages.js';
 import { supabase } from '../lib/supabase.js';
 import { useAuth } from '../lib/auth.jsx';
 import { normalizePhone } from '@shared/constants.js';
@@ -8,6 +9,9 @@ import { Avatar, timeAgo } from '../components/ui.jsx';
 export default function Connections() {
   const { user } = useAuth();
   const [rows, setRows] = useState(null);
+  const [err, setErr] = useState('');
+  const nav = useNavigate();
+  const chat = async (other) => { try { nav('/tin-nhan/' + await openConversation(other)); } catch (e) { setErr(e.message); } };
 
   const load = async () => {
     const { data } = await supabase.from('connections').select('*').or(`from_id.eq.${user.id},to_id.eq.${user.id}`).order('created_at', { ascending: false });
@@ -57,7 +61,9 @@ export default function Connections() {
       </Person>)}
       <h2>Đã kết nối ({accepted.length})</h2>
       {accepted.length === 0 && <p className="muted">Hãy tìm người cùng khu vực trên <Link to="/ban-do">bản đồ</Link> và gửi lời kết nối.</p>}
+      {err && <div className="error">{err}</div>}
       {accepted.map((r) => <Person key={r.id} r={r}>
+        <button className="btn sm" onClick={() => chat(r.other)}>💬 Nhắn tin</button>
         {r.phone && <a className="btn sm call" href={`tel:${normalizePhone(r.phone)}`}>📞 Gọi</a>}
         <button className="btn sm ghost" onClick={() => remove(r.id)}>Hủy kết nối</button>
       </Person>)}

@@ -18,6 +18,8 @@ import Notifications from './pages/Notifications.jsx';
 import Connections from './pages/Connections.jsx';
 import Rules from './pages/Rules.jsx';
 import Install from './pages/Install.jsx';
+import Inbox from './pages/Inbox.jsx';
+import Chat from './pages/Chat.jsx';
 
 const Admin = lazy(() => import('./admin/Admin.jsx'));
 
@@ -57,6 +59,8 @@ export default function App() {
             <Route path="/diem-cua-toi" element={<RequireAuth><MyPlaces /></RequireAuth>} />
             <Route path="/thong-bao" element={<RequireAuth><Notifications /></RequireAuth>} />
             <Route path="/ket-noi" element={<RequireAuth><Connections /></RequireAuth>} />
+            <Route path="/tin-nhan" element={<RequireAuth><Inbox /></RequireAuth>} />
+            <Route path="/tin-nhan/:id" element={<RequireAuth><Chat /></RequireAuth>} />
             <Route path="/gioi-thieu" element={<Rules part={1} />} />
             <Route path="/quy-dinh" element={<Rules part={2} />} />
             <Route path="/cai-dat-app" element={<Install />} />

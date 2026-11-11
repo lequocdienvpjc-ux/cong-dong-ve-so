@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../lib/auth.jsx';
 import { supabase } from '../lib/supabase.js';
 import UpdateBanner from './UpdateBanner.jsx';
+import { useUnreadMessages } from '../lib/messages.js';
 
 const logo = import.meta.env.BASE_URL + 'logo.png';
 
@@ -10,6 +11,7 @@ export default function Layout({ children }) {
   const { user } = useAuth();
   const [unread, setUnread] = useState(0);
   const [announce, setAnnounce] = useState('');
+  const unreadMsg = useUnreadMessages(user);
 
   useEffect(() => {
     supabase.from('public_config').select('announcement').maybeSingle()
@@ -37,6 +39,12 @@ export default function Layout({ children }) {
         <Link to="/"><img src={logo} alt="Logo Cộng Đồng Vé Số" /></Link>
         <div className="title">Cộng Đồng Vé Số<small>Hỗ trợ lẫn nhau – Vượt qua khó khăn</small></div>
         <button className="icon-btn" onClick={toggleBig} aria-label="Phóng to hoặc thu nhỏ chữ">A±</button>
+        {user && (
+          <Link to="/tin-nhan" className="icon-btn" style={{ display: 'grid', placeItems: 'center', textDecoration: 'none' }}
+            aria-label={`Tin nhắn, ${unreadMsg} cuộc trò chuyện chưa đọc`}>
+            💬{unreadMsg > 0 && <span className="badge">{unreadMsg > 99 ? '99+' : unreadMsg}</span>}
+          </Link>
+        )}
         <Link to="/thong-bao" className="icon-btn" style={{ display: 'grid', placeItems: 'center', textDecoration: 'none' }}
           aria-label={`Thông báo, ${unread} chưa đọc`}>
           🔔{unread > 0 && <span className="badge">{unread > 99 ? '99+' : unread}</span>}

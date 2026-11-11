@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { supabase, errText } from '../lib/supabase.js';
 import { useAuth } from '../lib/auth.jsx';
-import { canListen, listen, canSpeak, speak, stopSpeak } from '../lib/voice.js';
+import { canListen, startListening, voiceErrorText, canSpeak, speak, stopSpeak } from '../lib/voice.js';
 import { REPORT_REASONS, MAP_KINDS } from '@shared/constants.js';
 
 export function Field({ label, children, hint }) {
@@ -14,22 +14,46 @@ export function Field({ label, children, hint }) {
   );
 }
 
-// Ô nhập có nút micro để nói thay vì gõ
+// Ô nhập có nút micro để nói thay vì gõ. Chữ nói ra được thêm vào ô để người dùng xem lại, sửa trước khi gửi.
 export function VoiceInput({ value, onChange, multiline, ...rest }) {
   const [on, setOn] = useState(false);
+  const [status, setStatus] = useState({ text: '', err: false });
+  const valRef = useRef(value);
+  const stopRef = useRef(null);
+  const inputRef = useRef(null);
+  valRef.current = value;
+  useEffect(() => () => stopRef.current?.(), []);
+  useEffect(() => { if (!value) setStatus((st) => (st.err ? st : { text: '', err: false })); }, [value]);
   const Tag = multiline ? 'textarea' : 'input';
-  const start = () => {
+  const max = rest.maxLength || Infinity;
+
+  const toggle = () => {
+    if (on) { stopRef.current?.(); return; }
+    setStatus({ text: canListen() ? '🎙️ Đang nghe… Hãy nói, nói xong bấm lại 🎤 hoặc chờ vài giây.' : '', err: false });
     setOn(true);
-    listen((t) => onChange((value ? value + ' ' : '') + t), () => setOn(false));
+    stopRef.current = startListening({
+      onPartial: (t) => setStatus({ text: '🎙️ ' + t, err: false }),
+      onFinal: (t) => {
+        const cur = valRef.current || '';
+        onChange((cur ? cur.replace(/\s+$/, '') + ' ' : '') + t.slice(0, Math.max(0, max - cur.length - 1)));
+        setStatus({ text: '✅ Đã nhập. Bạn có thể xem lại và sửa trước khi gửi.', err: false });
+        setTimeout(() => inputRef.current?.focus(), 50);
+      },
+      onError: (code) => { const t = voiceErrorText(code); if (t) setStatus({ text: t, err: true }); },
+      onEnd: () => { setOn(false); stopRef.current = null; },
+    });
   };
+
   return (
-    <div className="row" style={{ alignItems: 'stretch', flexWrap: 'nowrap' }}>
-      <Tag className="grow" value={value} onChange={(e) => onChange(e.target.value)} type={multiline ? undefined : 'text'} {...rest} />
-      {canListen() && (
-        <button type="button" className="btn secondary" onClick={start} aria-label="Nói để nhập" style={{ minWidth: 56 }}>
-          {on ? '…' : '🎤'}
+    <div>
+      <div className="row" style={{ alignItems: 'stretch', flexWrap: 'nowrap' }}>
+        <Tag ref={inputRef} className="grow" value={value} onChange={(e) => onChange(e.target.value)} type={multiline ? undefined : 'text'} {...rest} />
+        <button type="button" className={'btn secondary' + (on ? ' mic-on' : '')} onClick={toggle}
+          aria-label={on ? 'Dừng nghe' : 'Bấm để nói thay vì gõ'} aria-pressed={on} style={{ minWidth: 56 }}>
+          {on ? '⏹' : '🎤'}
         </button>
-      )}
+      </div>
+      {status.text && <div className={'voice-status' + (status.err ? ' err' : '')} role="status">{status.text}</div>}
     </div>
   );
 }

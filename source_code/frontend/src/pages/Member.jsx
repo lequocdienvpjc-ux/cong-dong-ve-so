@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { openConversation } from '../lib/messages.js';
 import { supabase } from '../lib/supabase.js';
 import { useAuth } from '../lib/auth.jsx';
 import { ROLES, NEED_STATUS, MAP_KINDS, normalizePhone } from '@shared/constants.js';
@@ -14,6 +15,7 @@ export default function Member() {
   const [phone, setPhone] = useState(null);
   const [msg, setMsg] = useState('');
   const [state, setState] = useState({});
+  const nav = useNavigate();
 
   const load = async () => {
     const { data } = await supabase.from('public_profiles').select('*').eq('id', id).maybeSingle();
@@ -70,6 +72,11 @@ export default function Member() {
             <Field label="Lời nhắn (không bắt buộc)"><input type="text" value={msg} maxLength={300} onChange={(e) => setMsg(e.target.value)} placeholder="Ví dụ: Tôi bán vé gần chợ, muốn làm quen" /></Field>
             <button className="btn block" onClick={sendConn}>🤝 Gửi yêu cầu kết nối</button>
           </>
+        )}
+        {conn?.status === 'accepted' && (
+          <button className="btn block" onClick={async () => {
+            try { nav('/tin-nhan/' + await openConversation(id)); } catch (error) { setState({ error }); }
+          }}>💬 Nhắn tin</button>
         )}
         {conn && <p style={{ margin: 0 }}>Kết nối: <b>{conn.status === 'accepted' ? 'Đã kết nối ✅' : conn.status === 'pending' ? 'Đang chờ đồng ý' : 'Đã từ chối'}</b></p>}
         <Msg {...state} />

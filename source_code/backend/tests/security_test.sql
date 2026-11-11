@@ -131,4 +131,6 @@ do $$ declare r record; begin
   raise notice 'T11 PASS: ẩn SĐT, làm tròn vị trí, tìm gần tôi hoạt động';
 end $$;
 reset role;
+-- Kiểm thử nhắn tin riêng
+\ir messages_test.sql
 select 'ALL TESTS PASSED' as result;

@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase.js';
 import { useAuth } from '../lib/auth.jsx';
 import { timeAgo } from '../components/ui.jsx';
 
-const ICON = { connection: '🤝', reply: '💬', support: '🆘', system: '📢' };
+const ICON = { connection: '🤝', reply: '💬', message: '✉️', support: '🆘', system: '📢' };
 
 export default function Notifications() {
   const { user } = useAuth();

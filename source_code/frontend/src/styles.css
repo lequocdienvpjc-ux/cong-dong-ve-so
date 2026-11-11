@@ -179,3 +179,19 @@ table.tbl { width: 100%; border-collapse: collapse; background: #fff; border: 1p
 /* Thanh điều hướng nhanh ở các trang con: luôn có đường về trang chủ */
 .subnav { display: flex; justify-content: space-between; gap: 8px; width: 100%; max-width: 760px; margin: 0 auto; padding: 10px 14px 0; }
 .subnav .btn { min-height: 48px; }
+
+/* Nút đọc thành tiếng */
+.speak-wrap { display: inline-block; }
+.speak-mini { min-height: 40px !important; min-width: 44px; padding: 2px 8px !important; font-size: 1.05rem; }
+.bubble.theirs .time { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.doc .speak-wrap { margin: 2px 0 8px; }
+
+/* Trang Tiếp sức cùng người bán vé số */
+.ts-illus { width: 100%; max-width: 420px; display: block; margin: 0 auto 6px; }
+.ts-title { text-align: center; color: var(--red); font-size: 1.5rem; margin: 6px 0 8px; }
+.ts-lead { font-size: 1.08rem; font-weight: 600; }
+.ts-status { margin: 12px 0; }
+.ts-warn { border: 2px solid var(--red); background: #fff5f5; border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+.ts-warn h2 { color: var(--red); margin: 0 0 6px; font-size: 1.1rem; }
+.ts-entry { display: flex !important; gap: 12px; align-items: center; text-decoration: none; color: inherit; background: #fffbea; border-color: var(--gold); }
+.ts-entry .ico { font-size: 2rem; }

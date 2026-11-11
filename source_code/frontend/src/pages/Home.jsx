@@ -35,6 +35,11 @@ export default function Home() {
         {user && <Link className="btn secondary grow" to="/tin-nhan">💬 Tin nhắn</Link>}
       </div>
 
+      <Link to="/tiep-suc" className="card ts-entry" style={{ marginTop: 14 }}>
+        <span className="ico" aria-hidden="true">💛</span>
+        <span><b>TIẾP SỨC CÙNG NGƯỜI BÁN VÉ SỐ</b><br /><span className="small muted">Định hướng phát triển – đang nghiên cứu</span></span>
+      </Link>
+
       {!user && (
         <div className="card" style={{ marginTop: 14 }}>
           <b>Tham gia cộng đồng miễn phí</b>

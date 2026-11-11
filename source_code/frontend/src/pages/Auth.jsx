@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, Navigate, useSearchParams } from 'react-router-dom';
 import { supabase, redirectUrl } from '../lib/supabase.js';
 import { useAuth } from '../lib/auth.jsx';
-import { Field, Msg } from '../components/ui.jsx';
+import { Field, Msg, VoiceInput } from '../components/ui.jsx';
 
 export default function Auth() {
   const [sp] = useSearchParams();
@@ -52,7 +52,7 @@ export default function Auth() {
       </div>
       <form className="card" onSubmit={mode === 'login' ? login : mode === 'register' ? register : forgot}>
         {mode === 'register' && (
-          <Field label="Tên hiển thị"><input type="text" value={name} onChange={(e) => setName(e.target.value)} required maxLength={60} autoComplete="name" /></Field>
+          <Field label="Tên hiển thị"><VoiceInput value={name} onChange={setName} required maxLength={60} autoComplete="name" /></Field>
         )}
         <Field label="Email"><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" inputMode="email" /></Field>
         {mode !== 'forgot' && (

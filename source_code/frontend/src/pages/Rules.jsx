@@ -1,4 +1,13 @@
 import { useEffect, useRef } from 'react';
+import { SpeakButton } from '../components/ui.jsx';
+
+// Lấy chữ của một mục (từ tiêu đề đến trước tiêu đề kế tiếp) để đọc thành tiếng
+const sectionText = (id) => {
+  const h = document.getElementById(id); if (!h) return '';
+  let t = h.innerText + '. '; let el = h.nextElementSibling;
+  while (el && !/^H[23]$/.test(el.tagName)) { if (!el.classList.contains('speak-wrap')) t += el.innerText + ' '; el = el.nextElementSibling; }
+  return t;
+};
 
 // =====================================================================
 // GIỚI THIỆU + QUY ĐỊNH CỘNG ĐỒNG & QUYỀN RIÊNG TƯ
@@ -58,10 +67,12 @@ export default function Rules({ part }) {
         <h2 className="part-title">PHẦN I. GIỚI THIỆU</h2>
 
         <h3 id="p1-1">1. Cộng Đồng Vé Số là gì?</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p1-1')} />
         <p><b>CỘNG ĐỒNG VÉ SỐ</b> là nền tảng miễn phí giúp các đại lý vé số, người bán vé số, người mua vé số và những người có mong muốn giúp đỡ cộng đồng có thể tìm thấy, kết nối và hỗ trợ lẫn nhau.</p>
         <p>Chúng tôi mong muốn xây dựng một mạng lưới kết nối rộng khắp, nơi mọi người có thể chia sẻ thông tin, trao đổi kinh nghiệm, tìm kiếm sự hỗ trợ và giúp đỡ nhau trong công việc cũng như cuộc sống.</p>
 
         <h3 id="p1-2">2. Vì sao chúng tôi xây dựng cộng đồng này?</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p1-2')} />
         <p>Nhiều ngành nghề truyền thống như xe ôm, giao hàng, vận chuyển đã có những nền tảng công nghệ giúp người lao động kết nối với khách hàng và tìm kiếm công việc dễ dàng hơn.</p>
         <p>Trong khi đó, phần lớn người bán vé số dạo vẫn phải tự đi khắp nơi tìm khách, tự liên hệ đại lý để lấy vé và tự xoay xở với những khó khăn mỗi ngày.</p>
         <p>Có người bán hết vé sớm nhưng không biết tìm ai đang cần hỗ trợ. Có người gần đến giờ xổ số vẫn còn nhiều vé chưa bán được. Có đại lý gặp khó khăn khi lượng vé còn nhiều và cần tìm kiếm sự hỗ trợ từ những đại lý khác.</p>
@@ -69,6 +80,7 @@ export default function Rules({ part }) {
         <p>Chúng tôi nghĩ rằng những người lao động bình dân, đặc biệt là người lớn tuổi, người khuyết tật và người có hoàn cảnh khó khăn, cũng xứng đáng được tiếp cận với công nghệ để có thêm cơ hội cải thiện công việc và cuộc sống.</p>
 
         <h3 id="p1-3">3. Cộng đồng giúp mọi người như thế nào?</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p1-3')} />
         <p>Chúng tôi mong muốn xây dựng một mạng lưới tương trợ hai chiều:</p>
         <ul>
           <li><b>Người bán vé số hỗ trợ người bán vé số:</b> Người bán hết vé sớm có thể tìm kiếm những người xung quanh đang cần giúp đỡ.</li>
@@ -80,6 +92,7 @@ export default function Rules({ part }) {
         <p>Ứng dụng tập trung vào kết nối, chia sẻ thông tin và hỗ trợ cộng đồng; không trực tiếp mua bán, đặt vé, thanh toán, giao nhận hoặc phân phối vé số. Các hoạt động liên quan đến chuyển giao hoặc bán vé thay cho người khác không phải chức năng được ứng dụng tổ chức.</p>
 
         <h3 id="p1-4">4. Ứng dụng hoàn toàn miễn phí</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p1-4')} />
         <ul>
           <li>Miễn phí đăng ký và sử dụng.</li>
           <li>Miễn phí kết nối giữa các thành viên.</li>
@@ -89,6 +102,7 @@ export default function Rules({ part }) {
         <p>Chi phí vận hành, bảo trì và phát triển có thể được hỗ trợ thông qua những đóng góp tự nguyện từ các đại lý, cá nhân và tổ chức. Việc đóng góp hoàn toàn tùy tâm, không phải điều kiện để tham gia cộng đồng.</p>
 
         <h3 id="p1-5">5. Đơn vị sáng lập và hỗ trợ vận hành</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p1-5')} />
         <div className="contact-box">
           <p><b>ĐẠI LÝ VÉ SỐ 779</b></p>
           <ul>
@@ -102,6 +116,7 @@ export default function Rules({ part }) {
         <p>Đại lý vé số 779 không đứng ra bảo đảm hoặc chịu trách nhiệm thay cho các hoạt động riêng của thành viên.</p>
 
         <h3 id="p1-6">6. Mong muốn của chúng tôi</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p1-6')} />
         <p>Chúng tôi không thể giúp mọi người bán hết tất cả vé số, cũng không thể giải quyết mọi khó khăn của từng thành viên.</p>
         <p>Nhưng chúng tôi hy vọng có thể giúp mọi người có thêm cơ hội tìm thấy nhau, biết ai đang cần giúp đỡ và ai có thể hỗ trợ, thay vì phải đơn độc xoay xở mỗi ngày.</p>
         <p>Một người giúp một người, nhiều người cùng giúp nhiều người. Những sự hỗ trợ nhỏ khi được kết nối có thể tạo nên những giá trị lớn cho cộng đồng.</p>
@@ -116,11 +131,13 @@ export default function Rules({ part }) {
         <h2 className="part-title">PHẦN II. QUY ĐỊNH CỘNG ĐỒNG &amp; QUYỀN RIÊNG TƯ</h2>
 
         <h3 id="p2-1">1. Ứng dụng là gì?</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p2-1')} />
         <p>CỘNG ĐỒNG VÉ SỐ là nền tảng miễn phí giúp đại lý, người bán vé số, người mua và người muốn giúp đỡ tìm thấy và hỗ trợ nhau.</p>
         <p>Ứng dụng <b>không mua bán, không đặt vé, không thanh toán, không giao vé và không phân phối vé số</b>. Ứng dụng không đứng ra làm trung gian cho các giao dịch vé số giữa các thành viên.</p>
         <p>Thành viên tự chịu trách nhiệm về các hoạt động của mình và phải tuân thủ quy định pháp luật hiện hành.</p>
 
         <h3 id="p2-2">2. Điều kiện tham gia</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p2-2')} />
         <ul>
           <li>Chỉ dành cho người từ <b>18 tuổi trở lên</b>.</li>
           <li>Cung cấp thông tin trung thực, không giả mạo người khác.</li>
@@ -129,6 +146,7 @@ export default function Rules({ part }) {
         </ul>
 
         <h3 id="p2-3">3. Những nội dung và hành vi không được phép</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p2-3')} />
         <p>Thành viên không được đăng tải, chia sẻ hoặc thực hiện các hành vi sau:</p>
         <ul>
           <li>Dự đoán kết quả xổ số, soi cầu, chốt số, lô đề hoặc nội dung liên quan đến cờ bạc trái pháp luật.</li>
@@ -142,6 +160,7 @@ export default function Rules({ part }) {
         <p>Khi phát hiện nội dung xấu hoặc hành vi đáng ngờ, thành viên vui lòng sử dụng chức năng <b>⚠️ Báo cáo vi phạm</b> để thông báo cho quản trị viên.</p>
 
         <h3 id="p2-4">4. Quyền riêng tư và bảo vệ dữ liệu cá nhân</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p2-4')} />
         <h4>4.1. Thông tin có thể được thu thập</h4>
         <p>Tùy theo chức năng sử dụng, ứng dụng có thể thu thập:</p>
         <ul>
@@ -180,6 +199,7 @@ export default function Rules({ part }) {
         <p>Chúng tôi áp dụng các biện pháp kỹ thuật phù hợp nhằm bảo vệ dữ liệu, hạn chế truy cập trái phép và giảm thiểu nguy cơ mất mát thông tin.</p>
 
         <h3 id="p2-5">5. Liên hệ và tiếp nhận phản ánh</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p2-5')} />
         <p>Mọi thắc mắc, khiếu nại về nội dung cộng đồng, tài khoản hoặc dữ liệu cá nhân, thành viên có thể gửi thông qua chức năng <b>Báo cáo vi phạm</b> hoặc liên hệ:</p>
         <div className="contact-box">
           <p><b>ĐẠI LÝ VÉ SỐ 779</b></p>
@@ -190,6 +210,7 @@ export default function Rules({ part }) {
         </div>
 
         <h3 id="p2-6">6. Cam kết chung</h3>
+        <SpeakButton label="Đọc mục này" text={() => sectionText('p2-6')} />
         <p>Khi tham gia CỘNG ĐỒNG VÉ SỐ, thành viên được khuyến khích kết nối, chia sẻ và hỗ trợ nhau trên tinh thần tự nguyện, tôn trọng và tuân thủ pháp luật.</p>
         <p>Chúng tôi mong muốn xây dựng một cộng đồng văn minh, minh bạch, an toàn và có ích cho tất cả mọi người.</p>
       </section>

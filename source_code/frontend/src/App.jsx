@@ -20,6 +20,7 @@ import Rules from './pages/Rules.jsx';
 import Install from './pages/Install.jsx';
 import Inbox from './pages/Inbox.jsx';
 import Chat from './pages/Chat.jsx';
+import TiepSuc from './pages/TiepSuc.jsx';
 
 const Admin = lazy(() => import('./admin/Admin.jsx'));
 
@@ -62,6 +63,7 @@ export default function App() {
             <Route path="/tin-nhan" element={<RequireAuth><Inbox /></RequireAuth>} />
             <Route path="/tin-nhan/:id" element={<RequireAuth><Chat /></RequireAuth>} />
             <Route path="/gioi-thieu" element={<Rules part={1} />} />
+            <Route path="/tiep-suc" element={<TiepSuc />} />
             <Route path="/quy-dinh" element={<Rules part={2} />} />
             <Route path="/cai-dat-app" element={<Install />} />
             <Route path="*" element={<Navigate to="/" replace />} />

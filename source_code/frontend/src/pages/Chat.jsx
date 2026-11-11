@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase.js';
 import { useAuth } from '../lib/auth.jsx';
 import { otherOf } from '../lib/messages.js';
-import { Avatar, Msg, VoiceInput } from '../components/ui.jsx';
+import { Avatar, Msg, SpeakButton, VoiceInput } from '../components/ui.jsx';
 
 const fmtTime = (iso) => {
   const d = new Date(iso); const today = new Date();
@@ -94,7 +94,9 @@ export default function Chat() {
         {msgs.map((m) => (
           <div key={m.id} className={'bubble ' + (m.sender_id === user.id ? 'mine' : 'theirs')}>
             <div className="post-body">{m.body}</div>
-            <div className="time">{fmtTime(m.created_at)}</div>
+            <div className="time">
+              {m.sender_id !== user.id && <SpeakButton compact label="Đọc tin nhắn này" text={m.body} />} {fmtTime(m.created_at)}
+            </div>
           </div>
         ))}
         <div ref={endRef} />

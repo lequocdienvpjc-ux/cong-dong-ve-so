@@ -4,7 +4,7 @@ import { openConversation } from '../lib/messages.js';
 import { supabase } from '../lib/supabase.js';
 import { useAuth } from '../lib/auth.jsx';
 import { ROLES, NEED_STATUS, MAP_KINDS, normalizePhone } from '@shared/constants.js';
-import { Avatar, Msg, ReportButton, Field, SpeakButton } from '../components/ui.jsx';
+import { Avatar, Msg, ReportButton, Field, SpeakButton, VoiceInput } from '../components/ui.jsx';
 
 export default function Member() {
   const { id } = useParams();
@@ -69,7 +69,7 @@ export default function Member() {
         {!user && <Link className="btn block secondary" to="/dang-nhap">Đăng nhập để kết nối</Link>}
         {user && user.id !== id && !conn && (
           <>
-            <Field label="Lời nhắn (không bắt buộc)"><input type="text" value={msg} maxLength={300} onChange={(e) => setMsg(e.target.value)} placeholder="Ví dụ: Tôi bán vé gần chợ, muốn làm quen" /></Field>
+            <Field label="Lời nhắn (không bắt buộc)"><VoiceInput value={msg} maxLength={300} onChange={setMsg} placeholder="Ví dụ: Tôi bán vé gần chợ, muốn làm quen" /></Field>
             <button className="btn block" onClick={sendConn}>🤝 Gửi yêu cầu kết nối</button>
           </>
         )}

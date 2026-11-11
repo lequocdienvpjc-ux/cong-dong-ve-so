@@ -51,7 +51,7 @@ export default function MyPlaces() {
         </select>
       </Field>
       <Field label="Số điện thoại của điểm (sẽ hiển thị công khai)"><input type="tel" value={f.phone || ''} onChange={(e) => set('phone', e.target.value)} /></Field>
-      <Field label="Giờ mở cửa"><input type="text" value={f.open_hours || ''} onChange={(e) => set('open_hours', e.target.value)} placeholder="6:00 – 18:00" /></Field>
+      <Field label="Giờ mở cửa"><VoiceInput value={f.open_hours || ''} onChange={(v) => set('open_hours', v)} maxLength={80} placeholder="6:00 – 18:00" /></Field>
       <Field label="Ghi chú"><VoiceInput multiline value={f.note || ''} onChange={(v) => set('note', v)} maxLength={500} /></Field>
       <button type="button" className="btn secondary block" onClick={gps}>📍 Lấy vị trí (đứng tại điểm bán)</button>
       {f.lat != null && <p className="small muted">Vị trí: {f.lat.toFixed(5)}, {f.lng.toFixed(5)}</p>}

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase.js';
 import { useAuth } from '../lib/auth.jsx';
-import { timeAgo } from '../components/ui.jsx';
+import { SpeakButton, timeAgo } from '../components/ui.jsx';
 
 const ICON = { connection: '🤝', reply: '💬', message: '✉️', support: '🆘', system: '📢' };
 
@@ -22,7 +22,9 @@ export default function Notifications() {
       {list?.length === 0 && <p className="muted">Chưa có thông báo.</p>}
       {list?.map((n) => {
         const inner = (<><div style={{ fontWeight: n.read_at ? 500 : 800 }}>{ICON[n.type] || '🔔'} {n.title}</div>
-          {n.body && <div className="small">{n.body}</div>}<div className="small muted">{timeAgo(n.created_at)}</div></>);
+          {n.body && <div className="small">{n.body}</div>}
+          <div className="row small muted" style={{ marginTop: 4 }}><span className="grow">{timeAgo(n.created_at)}</span>
+            <SpeakButton compact label="Đọc thông báo này" text={n.title + '. ' + (n.body || '')} /></div></>);
         return n.link
           ? <Link key={n.id} to={n.link} onClick={() => open(n)} className="card" style={{ display: 'block', color: 'inherit', textDecoration: 'none', background: n.read_at ? '#fff' : '#eef4ff' }}>{inner}</Link>
           : <div key={n.id} className="card" onClick={() => open(n)} style={{ background: n.read_at ? '#fff' : '#eef4ff' }}>{inner}</div>;

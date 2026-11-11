@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { supabase, errText } from '../lib/supabase.js';
 import { useAuth } from '../lib/auth.jsx';
-import { canListen, startListening, voiceErrorText, canSpeak, speak, stopSpeak } from '../lib/voice.js';
+import { canListen, startListening, voiceErrorText, canSpeak, speak, stopSpeak, speakErrorText } from '../lib/voice.js';
 import { REPORT_REASONS, MAP_KINDS } from '@shared/constants.js';
 
 export function Field({ label, children, hint }) {
@@ -58,13 +58,26 @@ export function VoiceInput({ value, onChange, multiline, ...rest }) {
   );
 }
 
-export function SpeakButton({ text }) {
+// Nút 🔊 đọc nội dung cho người không tiện đọc chữ. compact: chỉ hiện biểu tượng (dùng trong tin nhắn)
+export function SpeakButton({ text, compact, label = 'Đọc cho tôi nghe' }) {
   const [on, setOn] = useState(false);
+  const [err, setErr] = useState('');
+  useEffect(() => () => { if (on) stopSpeak(); }, [on]);
   if (!canSpeak()) return null;
+  const click = (e) => {
+    e.preventDefault(); e.stopPropagation();
+    if (on) { stopSpeak(); setOn(false); return; }
+    setErr(''); setOn(true);
+    speak(typeof text === 'function' ? text() : text, { onEnd: () => setOn(false), onError: (c) => { setOn(false); setErr(speakErrorText(c)); } });
+  };
   return (
-    <button type="button" className="btn sm secondary" onClick={() => {
-      if (on) { stopSpeak(); setOn(false); } else { speak(text); setOn(true); setTimeout(() => setOn(false), 15000); }
-    }}>{on ? '⏹ Dừng đọc' : '🔊 Đọc cho tôi nghe'}</button>
+    <span className="speak-wrap">
+      <button type="button" className={'btn sm secondary' + (compact ? ' speak-mini' : '')} onClick={click}
+        aria-label={on ? 'Dừng đọc' : label} title={on ? 'Dừng đọc' : label}>
+        {on ? (compact ? '⏹' : '⏹ Dừng đọc') : (compact ? '🔊' : '🔊 ' + label)}
+      </button>
+      {err && <span className="voice-status err" role="status" style={{ display: 'block' }}>{err}</span>}
+    </span>
   );
 }
 
@@ -99,7 +112,7 @@ export function ReportButton({ type, id }) {
         </select>
       </Field>
       <Field label="Mô tả thêm (không bắt buộc)">
-        <textarea value={detail} onChange={(e) => setDetail(e.target.value)} maxLength={1000} style={{ minHeight: 80 }} />
+        <VoiceInput multiline value={detail} onChange={setDetail} maxLength={1000} style={{ minHeight: 80 }} />
       </Field>
       <Msg {...state} />
       <div className="row" style={{ marginTop: 8 }}>

@@ -61,7 +61,7 @@ export default function Layout({ children }) {
     <div className="app">
       <header className="topbar">
         <Link to="/"><img src={logo} alt="Logo Cộng Đồng Vé Số" /></Link>
-        <div className="title">Cộng Đồng Vé Số<small>Hỗ trợ lẫn nhau – Vượt qua khó khăn</small></div>
+        <div className="title">Cộng Đồng Vé Số<small>Kết nối bằng công nghệ – Chia sẻ bằng tình người</small></div>
         <button className="icon-btn" onClick={toggleBig} aria-label="Phóng to hoặc thu nhỏ chữ">A±</button>
         {user && (
           <Link to="/tin-nhan" className="icon-btn" style={{ display: 'grid', placeItems: 'center', textDecoration: 'none' }}

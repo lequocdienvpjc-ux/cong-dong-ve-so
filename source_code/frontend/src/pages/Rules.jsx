@@ -11,7 +11,8 @@ const sectionText = (id) => {
 
 // =====================================================================
 // GIỚI THIỆU + QUY ĐỊNH CỘNG ĐỒNG & QUYỀN RIÊNG TƯ
-// Nội dung chính thức – Phiên bản V01 (23:00, 09/11/2026). Giữ nguyên văn, không tự ý sửa.
+// Nội dung chính thức – Phiên bản V01 (23:00, 09/11/2026); Phần I điều chỉnh theo thông điệp giới thiệu chính thức ngày 11/11/2026.
+// Giữ nguyên văn, không tự ý sửa.
 // =====================================================================
 
 const logo = import.meta.env.BASE_URL + 'logo.png';
@@ -21,7 +22,7 @@ const TOC = [
     ['p1-1', '1. Cộng Đồng Vé Số là gì?'],
     ['p1-2', '2. Vì sao chúng tôi xây dựng cộng đồng này?'],
     ['p1-3', '3. Cộng đồng giúp mọi người như thế nào?'],
-    ['p1-4', '4. Ứng dụng hoàn toàn miễn phí'],
+    ['p1-4', '4. Ứng dụng miễn phí – Không thu phí kết nối'],
     ['p1-5', '5. Đơn vị sáng lập và hỗ trợ vận hành'],
     ['p1-6', '6. Mong muốn của chúng tôi'],
   ]],
@@ -49,7 +50,7 @@ export default function Rules({ part }) {
       <header className="doc-head">
         <img className="page-logo" src={logo} alt="Logo Cộng Đồng Vé Số" />
         <h1>CỘNG ĐỒNG VÉ SỐ</h1>
-        <p className="doc-slogan">HỖ TRỢ LẪN NHAU – VƯỢT QUA KHÓ KHĂN</p>
+        <p className="doc-slogan">KẾT NỐI BẰNG CÔNG NGHỆ – CHIA SẺ BẰNG TÌNH NGƯỜI</p>
       </header>
 
       <nav className="doc-toc card" aria-label="Mục lục">
@@ -68,8 +69,10 @@ export default function Rules({ part }) {
 
         <h3 id="p1-1">1. Cộng Đồng Vé Số là gì?</h3>
         <SpeakButton label="Đọc mục này" text={() => sectionText('p1-1')} />
-        <p><b>CỘNG ĐỒNG VÉ SỐ</b> là nền tảng miễn phí giúp các đại lý vé số, người bán vé số, người mua vé số và những người có mong muốn giúp đỡ cộng đồng có thể tìm thấy, kết nối và hỗ trợ lẫn nhau.</p>
-        <p>Chúng tôi mong muốn xây dựng một mạng lưới kết nối rộng khắp, nơi mọi người có thể chia sẻ thông tin, trao đổi kinh nghiệm, tìm kiếm sự hỗ trợ và giúp đỡ nhau trong công việc cũng như cuộc sống.</p>
+        <p>Công nghệ ngày càng phát triển, nhiều ứng dụng ra đời để phục vụ cuộc sống. Nhưng vẫn còn rất nhiều người, đặc biệt là người bán vé số dạo, người khuyết tật, người lớn tuổi và những người có hoàn cảnh khó khăn, chưa có nhiều cơ hội tiếp cận những tiện ích đó.</p>
+        <p><b>CỘNG ĐỒNG VÉ SỐ mong muốn tạo ra một nơi để mọi người có thể tìm thấy nhau, kết nối với nhau và cùng tạo ra những giá trị tốt đẹp trong cuộc sống.</b></p>
+        <p>Trọng tâm của cộng đồng vẫn là kết nối đại lý vé số với người bán vé số dạo, giúp người bán tìm nguồn vé, tìm đại lý phù hợp và giúp các đại lý kết nối với người cần hỗ trợ bán vé.</p>
+        <p>Đây là một cộng đồng miễn phí, nơi mọi người có thể đăng tải nhu cầu, tìm kiếm người hỗ trợ, tìm việc làm nhỏ và chia sẻ những điều mình có với những người đang cần.</p>
 
         <h3 id="p1-2">2. Vì sao chúng tôi xây dựng cộng đồng này?</h3>
         <SpeakButton label="Đọc mục này" text={() => sectionText('p1-2')} />
@@ -89,16 +92,28 @@ export default function Rules({ part }) {
           <li><b>Đại lý và người bán vé số kết nối với nhau:</b> Giúp mọi người mở rộng mạng lưới quan hệ.</li>
           <li><b>Cộng đồng cùng giúp đỡ người khó khăn:</b> Tạo cơ hội để cá nhân, tổ chức và những người có điều kiện cùng chung tay hỗ trợ.</li>
         </ul>
+        <p><b>Nhưng cộng đồng không chỉ dừng lại ở vé số.</b></p>
+        <p>Bạn cần người giao đồ ăn, giao hàng, chở đi đâu đó, đi chợ hoặc phụ giúp một công việc nhỏ?</p>
+        <p>Một cửa hàng cần người phụ bán vài tiếng? Một quán ăn cần người hỗ trợ đóng gói? Một người đang có thời gian rảnh muốn tìm việc làm thêm?</p>
+        <p>Bạn có quần áo, đồ dùng còn tốt muốn tặng? Bạn là chủ tiệm tạp hóa có hàng muốn bán giá rẻ? Bạn có những phần ăn còn bảo đảm an toàn muốn chia sẻ với người cần?</p>
+        <p><b>Tất cả đều có thể đăng tải nhu cầu lên CỘNG ĐỒNG VÉ SỐ để mọi người tìm thấy nhau.</b> Chỉ cần dùng chức năng đăng bài trên Bảng tương trợ.</p>
+        <p>Có thể một người đang cần giúp đỡ, nhưng ở gần đó lại có người đang có thời gian, có phương tiện hoặc có khả năng giúp đỡ. Có thể một cửa hàng đang cần người phụ việc, trong khi một người khác đang cần một công việc nhỏ để kiếm thêm thu nhập.</p>
+        <p>Chúng tôi mong muốn tạo thêm cơ hội cho người yếu thế, người khuyết tật, người lớn tuổi và những người đang gặp khó khăn có thể tham gia vào các hoạt động phù hợp, chủ động tìm kiếm việc làm và cải thiện cuộc sống.</p>
+        <p>Đối với thực phẩm, hàng hóa và công việc có điều kiện an toàn hoặc cần giấy phép riêng, người đăng phải tuân thủ quy định hiện hành.</p>
         <p>Ứng dụng tập trung vào kết nối, chia sẻ thông tin và hỗ trợ cộng đồng; không trực tiếp mua bán, đặt vé, thanh toán, giao nhận hoặc phân phối vé số. Các hoạt động liên quan đến chuyển giao hoặc bán vé thay cho người khác không phải chức năng được ứng dụng tổ chức.</p>
 
-        <h3 id="p1-4">4. Ứng dụng hoàn toàn miễn phí</h3>
+        <h3 id="p1-4">4. Ứng dụng miễn phí – Không thu phí kết nối</h3>
         <SpeakButton label="Đọc mục này" text={() => sectionText('p1-4')} />
         <ul>
-          <li>Miễn phí đăng ký và sử dụng.</li>
-          <li>Miễn phí kết nối giữa các thành viên.</li>
-          <li>Không thu phí duy trì tài khoản.</li>
+          <li>Không thu phí đăng ký.</li>
+          <li>Không thu phí đăng tin.</li>
+          <li>Không thu phí tìm kiếm.</li>
+          <li>Không thu hoa hồng kết nối.</li>
+          <li>Không thu phần trăm từ công việc do mọi người tự kết nối.</li>
           <li>Không bắt buộc đóng góp để được sử dụng ứng dụng.</li>
         </ul>
+        <p>CỘNG ĐỒNG VÉ SỐ không đứng ra nhận tiền, thanh toán, điều phối công việc hoặc bảo đảm giao dịch giữa các bên. Ứng dụng chỉ cung cấp không gian để mọi người đăng nhu cầu, tìm thấy nhau và chủ động liên hệ, tự thỏa thuận với nhau.</p>
+        <p><b>Chúng tôi không mong muốn kiếm lợi nhuận từ những người đang cần giúp đỡ. Chúng tôi mong muốn tạo ra một cộng đồng mà ở đó, mỗi người đều có thể tìm thấy một cơ hội hoặc trao đi một sự giúp đỡ.</b></p>
         <p>Chi phí vận hành, bảo trì và phát triển có thể được hỗ trợ thông qua những đóng góp tự nguyện từ các đại lý, cá nhân và tổ chức. Việc đóng góp hoàn toàn tùy tâm, không phải điều kiện để tham gia cộng đồng.</p>
 
         <h3 id="p1-5">5. Đơn vị sáng lập và hỗ trợ vận hành</h3>
@@ -121,7 +136,9 @@ export default function Rules({ part }) {
         <p>Nhưng chúng tôi hy vọng có thể giúp mọi người có thêm cơ hội tìm thấy nhau, biết ai đang cần giúp đỡ và ai có thể hỗ trợ, thay vì phải đơn độc xoay xở mỗi ngày.</p>
         <p>Một người giúp một người, nhiều người cùng giúp nhiều người. Những sự hỗ trợ nhỏ khi được kết nối có thể tạo nên những giá trị lớn cho cộng đồng.</p>
         <p><b>Công nghệ không chỉ dành cho những ngành nghề lớn hay những người có điều kiện. Những người lao động bình dân cũng xứng đáng có một công cụ hỗ trợ công việc và kết nối cộng đồng.</b></p>
+        <p>Đôi khi, một công việc chỉ vài chục nghìn đồng, một món đồ cũ còn tốt, một phần ăn được chia sẻ hay một chuyến xe giúp người khác cũng có thể tạo nên ý nghĩa lớn.</p>
         <p>Xin cảm ơn tất cả các đại lý, người bán vé số, người mua vé số và những tấm lòng thiện nguyện đã cùng tham gia, chia sẻ và xây dựng cộng đồng này.</p>
+        <p><b>CỘNG ĐỒNG VÉ SỐ – KẾT NỐI BẰNG CÔNG NGHỆ, CHIA SẺ BẰNG TÌNH NGƯỜI.</b></p>
       </section>
 
       <hr className="doc-sep" />
@@ -132,7 +149,7 @@ export default function Rules({ part }) {
 
         <h3 id="p2-1">1. Ứng dụng là gì?</h3>
         <SpeakButton label="Đọc mục này" text={() => sectionText('p2-1')} />
-        <p>CỘNG ĐỒNG VÉ SỐ là nền tảng miễn phí giúp đại lý, người bán vé số, người mua và người muốn giúp đỡ tìm thấy và hỗ trợ nhau.</p>
+        <p>CỘNG ĐỒNG VÉ SỐ là nền tảng miễn phí giúp đại lý, người bán vé số, người mua và người muốn giúp đỡ tìm thấy và hỗ trợ nhau; đồng thời là nơi mọi người đăng nhu cầu, tìm việc làm nhỏ và chia sẻ với người đang cần.</p>
         <p>Ứng dụng <b>không mua bán, không đặt vé, không thanh toán, không giao vé và không phân phối vé số</b>. Ứng dụng không đứng ra làm trung gian cho các giao dịch vé số giữa các thành viên.</p>
         <p>Thành viên tự chịu trách nhiệm về các hoạt động của mình và phải tuân thủ quy định pháp luật hiện hành.</p>
 
@@ -218,7 +235,7 @@ export default function Rules({ part }) {
       <hr className="doc-sep" />
       <footer className="doc-foot">
         <p className="doc-name">CỘNG ĐỒNG VÉ SỐ</p>
-        <p className="doc-slogan">HỖ TRỢ LẪN NHAU – VƯỢT QUA KHÓ KHĂN</p>
+        <p className="doc-slogan">KẾT NỐI BẰNG CÔNG NGHỆ – CHIA SẺ BẰNG TÌNH NGƯỜI</p>
         <p><i>Phiên bản V01 – 23:00, ngày 09/11/2026</i></p>
         <button type="button" className="btn sm secondary" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑ Lên đầu trang</button>
       </footer>

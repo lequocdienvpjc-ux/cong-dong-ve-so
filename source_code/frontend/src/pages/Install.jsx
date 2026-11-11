@@ -7,6 +7,10 @@ export default function Install() {
   return (
     <div className="stack">
       <h1>Cài ứng dụng</h1>
+      <div className="notice">
+        ⏳ <b>Ứng dụng đang chờ duyệt để đưa lên cửa hàng ứng dụng</b> cho mọi người tiện tải về.
+        Hiện tại, để tải, làm theo hướng dẫn bên dưới.
+      </div>
       <div className="card">
         <h2 style={{ marginTop: 0 }}>🤖 Điện thoại Android</h2>
         {apk?.android_apk_url ? <a className="btn block green" href={apk.android_apk_url}>⬇️ Tải ứng dụng (APK) – bản {apk.android_version}</a>

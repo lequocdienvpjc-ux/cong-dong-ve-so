@@ -39,6 +39,7 @@ export default function Support() {
         <Link className="btn danger grow" to="/dang-bai?loai=can_giup">🆘 Tôi cần giúp đỡ</Link>
         <Link className="btn green grow" to="/dang-bai?loai=muon_giup">🤝 Tôi muốn giúp</Link>
       </div>
+      <p className="small muted" style={{ margin: '0 0 8px' }}>Cần người phụ việc, giao đồ, chở đi? Có thời gian rảnh muốn làm thêm, có đồ muốn cho tặng? Hãy đăng lên đây để mọi người tìm thấy nhau. <b>Một công việc nhỏ, một sự giúp đỡ lớn.</b></p>
       {!user && <p className="small muted">Bạn cần đăng nhập để đăng bài.</p>}
       <div className="tabs">
         <button className={'chip' + (!tab ? ' on' : '')} onClick={() => setTab('')}>Tất cả</button>

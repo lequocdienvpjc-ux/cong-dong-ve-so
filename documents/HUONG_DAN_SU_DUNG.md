@@ -1,6 +1,6 @@
 # Hướng dẫn sử dụng – Cộng Đồng Vé Số
 
-**Hỗ trợ lẫn nhau – Vượt qua khó khăn.** Ứng dụng miễn phí kết nối đại lý, người bán vé số, người mua và người muốn giúp đỡ.
+**Kết nối bằng công nghệ – Chia sẻ bằng tình người.** Cộng đồng miễn phí: trọng tâm là kết nối đại lý vé số với người bán vé số dạo, đồng thời là nơi mọi người đăng nhu cầu, tìm người hỗ trợ, tìm việc làm nhỏ và chia sẻ với người đang cần.
 Ứng dụng **không** mua bán, đặt, thanh toán, giao hay phân phối vé số.
 
 ## 1. Cài ứng dụng
@@ -50,6 +50,16 @@
 - Ứng dụng Android: dùng bộ nhận dạng giọng nói của Google trên điện thoại (cần mạng). Nếu báo thiếu tiếng Việt: Cài đặt → Ngôn ngữ → Nhập bằng giọng nói → thêm Tiếng Việt.
 - iPhone: nếu micro của ứng dụng không chạy, bấm vào ô nhập rồi dùng nút 🎤 trên bàn phím iPhone (cạnh phím cách).
 - Luôn xem lại chữ đã nhập và sửa nếu sai trước khi gửi.
+
+## 5c. Đăng nhu cầu, tìm việc nhỏ và chia sẻ
+
+Ngoài vé số, anh/chị có thể dùng **Bảng tương trợ** (nút 🆘 Tôi cần giúp đỡ / 🤝 Tôi muốn giúp) để:
+- Tìm người giao đồ ăn, giao hàng gần nhà, chở đi một nơi, đi chợ giúp, phụ dọn dẹp, chuyển đồ.
+- Cửa hàng, quán ăn tìm người phụ bán, đóng gói, giao hàng theo giờ.
+- Người có thời gian rảnh tìm việc nhỏ để kiếm thêm thu nhập.
+- Tặng quần áo, đồ dùng còn tốt; tiệm tạp hóa báo hàng muốn bán giá rẻ; quán ăn chia sẻ phần ăn còn bảo đảm an toàn.
+
+Các bên tự liên hệ, tự thỏa thuận. Ứng dụng **không thu phí đăng ký, đăng tin, tìm kiếm, không lấy hoa hồng hay phần trăm**, không nhận tiền, không điều phối và không bảo đảm giao dịch. Thực phẩm, hàng hóa và công việc cần điều kiện an toàn hoặc giấy phép riêng phải tuân thủ quy định hiện hành.
 
 ## 6. Quy định
 Không đăng dự đoán kết quả ("soi cầu", "chốt số"), không rao mua bán / mua hộ / giao vé, không lừa đảo, không xin chuyển tiền.

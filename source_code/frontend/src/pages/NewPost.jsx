@@ -42,7 +42,7 @@ export default function NewPost() {
       </div>
       <Field label="Tiêu đề ngắn">
         <VoiceInput value={title} onChange={setTitle} maxLength={150} required
-          placeholder={kind === 'can_giup' ? 'Ví dụ: Cần người chở đi khám bệnh' : 'Ví dụ: Tôi có thể sửa xe lăn miễn phí'} />
+          placeholder={kind === 'can_giup' ? 'Ví dụ: Cần người phụ chuyển đồ vài tiếng chiều nay' : 'Ví dụ: Tôi có quần áo còn tốt muốn tặng người cần'} />
       </Field>
       <Field label="Nội dung" hint="Bấm 🎤 để nói thay vì gõ. Không ghi số tài khoản ngân hàng.">
         <VoiceInput multiline value={body} onChange={setBody} maxLength={3000} required />
@@ -53,6 +53,7 @@ export default function NewPost() {
           {PROVINCES.map((p) => <option key={p}>{p}</option>)}
         </select>
       </Field>
+      <p className="small muted" style={{ margin: '4px 0 0' }}>Với thực phẩm, hàng hóa hoặc công việc cần điều kiện an toàn, giấy phép riêng, người đăng phải tuân thủ quy định hiện hành. Các bên tự liên hệ và tự thỏa thuận; ứng dụng không nhận tiền, không thu phí, không bảo đảm giao dịch.</p>
       <Msg {...state} />
       <button className="btn block" disabled={busy} style={{ marginTop: 10 }}>{busy ? 'Đang đăng…' : 'Đăng bài'}</button>
     </form>

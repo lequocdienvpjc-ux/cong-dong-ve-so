@@ -13,7 +13,8 @@ export default function Home() {
     <div>
       <div className="home-hero">
         <img src={logo} alt="Logo Cộng Đồng Vé Số" />
-        <p className="slogan">HỖ TRỢ LẪN NHAU – VƯỢT QUA KHÓ KHĂN</p>
+        <p className="slogan">KẾT NỐI BẰNG CÔNG NGHỆ – CHIA SẺ BẰNG TÌNH NGƯỜI</p>
+        <p className="small muted" style={{ margin: '4px 0 0' }}>Không thu phí kết nối – Không lấy hoa hồng – Chỉ giúp mọi người tìm thấy nhau.</p>
         {user && <p className="muted" style={{ margin: '4px 0 0' }}>Xin chào, <b>{profile?.display_name}</b></p>}
       </div>
 
@@ -44,7 +45,7 @@ export default function Home() {
       {!user && (
         <div className="card" style={{ marginTop: 14 }}>
           <b>Tham gia cộng đồng miễn phí</b>
-          <p className="muted" style={{ margin: '6px 0 10px' }}>Đăng ký để có hồ sơ trên bản đồ, đăng tin cần giúp và kết nối với mọi người.</p>
+          <p className="muted" style={{ margin: '6px 0 10px' }}>Đăng ký để có hồ sơ trên bản đồ, đăng nhu cầu, tìm người hỗ trợ, tìm việc làm nhỏ và kết nối với mọi người.</p>
           <Link className="btn block" to="/dang-nhap?dk=1">Đăng ký / Đăng nhập</Link>
         </div>
       )}

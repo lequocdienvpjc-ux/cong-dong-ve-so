@@ -19,7 +19,7 @@ export default defineConfig({
       manifest: {
         name: 'Cộng Đồng Vé Số',
         short_name: 'Cộng Đồng Vé Số',
-        description: 'Hỗ trợ lẫn nhau – Vượt qua khó khăn',
+        description: 'Kết nối bằng công nghệ – Chia sẻ bằng tình người',
         lang: 'vi',
         theme_color: '#1e40af',
         background_color: '#ffffff',

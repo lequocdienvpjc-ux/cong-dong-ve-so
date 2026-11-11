@@ -1,6 +1,6 @@
 # Cộng Đồng Vé Số
 
-**Hỗ trợ lẫn nhau – Vượt qua khó khăn.** Nền tảng cộng đồng miễn phí kết nối đại lý vé số, người bán vé số dạo / cố định, người mua và người muốn hỗ trợ tại Việt Nam.
+**Kết nối bằng công nghệ – Chia sẻ bằng tình người.** Nền tảng cộng đồng miễn phí kết nối đại lý vé số, người bán vé số dạo / cố định, người mua và người muốn hỗ trợ tại Việt Nam.
 
 > Ứng dụng chỉ cung cấp thông tin và kết nối. **Không** có chức năng đặt mua, thanh toán, giao, chuyển nhượng hay phân phối vé số.
 

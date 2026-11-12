@@ -17,7 +17,7 @@ export default function Install() {
           : <p className="muted">Đường link tải sẽ được cập nhật sớm.</p>}
         <ol>
           <li>Bấm nút tải ở trên, chờ tải xong.</li>
-          <li>Mở tệp <b>CongDongVeSo.apk</b>. Nếu máy hỏi, chọn <b>Cho phép cài từ nguồn này</b>.</li>
+          <li>Mở tệp <b>.apk</b> vừa tải về (trong mục Tải xuống). Nếu máy hỏi, chọn <b>Cho phép cài từ nguồn này</b>.</li>
           <li>Bấm <b>Cài đặt</b>. Nếu Google Play Protect cảnh báo, chọn <b>Vẫn cài đặt</b>.</li>
         </ol>
       </div>
@@ -27,7 +27,7 @@ export default function Install() {
           <li>Mở trang này bằng <b>Safari</b>.</li>
           <li>Bấm nút <b>Chia sẻ</b> (hình vuông có mũi tên lên) ở dưới màn hình.</li>
           <li>Chọn <b>Thêm vào MH chính</b> rồi bấm <b>Thêm</b>.</li>
-          <li>Biểu tượng Cộng Đồng Vé Số xuất hiện trên màn hình như một ứng dụng.</li>
+          <li>Biểu tượng Cộng Đồng Mưu Sinh xuất hiện trên màn hình như một ứng dụng.</li>
         </ol>
       </div>
     </div>

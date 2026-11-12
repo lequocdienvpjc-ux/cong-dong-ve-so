@@ -65,6 +65,7 @@ export default function App() {
             <Route path="/gioi-thieu" element={<Rules part={1} />} />
             <Route path="/tiep-suc" element={<TiepSuc />} />
             <Route path="/quy-dinh" element={<Rules part={2} />} />
+            <Route path="/lien-he" element={<Rules part="lien-he" />} />
             <Route path="/cai-dat-app" element={<Install />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

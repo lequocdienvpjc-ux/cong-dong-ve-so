@@ -1,14 +1,14 @@
 import { SpeakButton } from '../components/ui.jsx';
 
 // =====================================================================
-// TIẾP SỨC CÙNG NGƯỜI BÁN VÉ SỐ — trang giới thiệu định hướng (chỉ giới thiệu).
+// TIẾP SỨC CÙNG CỘNG ĐỒNG MƯU SINH — trang giới thiệu định hướng (chỉ giới thiệu).
 // Phiên bản hiện tại KHÔNG có: quyên góp, chuyển tiền, đăng ký nhận/hỗ trợ,
 // hay hiển thị thông tin người khó khăn. Nội dung giữ đúng văn bản đã duyệt.
 // =====================================================================
 
-const INTRO = 'CỘNG ĐỒNG VÉ SỐ định hướng mở rộng khu vực kết nối các công ty xổ số, doanh nghiệp, mạnh thường quân với những người bán vé số có hoàn cảnh khó khăn, bệnh hiểm nghèo, tai nạn hoặc khuyết tật.';
+const INTRO = 'CỘNG ĐỒNG MƯU SINH định hướng mở rộng khu vực kết nối các công ty xổ số, doanh nghiệp, mạnh thường quân với những người bán vé số có hoàn cảnh khó khăn, bệnh hiểm nghèo, tai nạn hoặc khuyết tật.';
 const PLAN = 'Chức năng này sẽ được nghiên cứu và triển khai trong giai đoạn nâng cấp tiếp theo, sau khi hoàn thiện việc đánh giá các quy định pháp luật và quy chế vận hành phù hợp.';
-const NOTE1 = 'Đơn vị sáng lập và vận hành CỘNG ĐỒNG VÉ SỐ hiện tại không làm trung gian tiếp nhận, giữ, chuyển giao hoặc phân phối bất kỳ khoản tiền hay tài sản hỗ trợ nào.';
+const NOTE1 = 'Đơn vị sáng lập và vận hành CỘNG ĐỒNG MƯU SINH hiện tại không làm trung gian tiếp nhận, giữ, chuyển giao hoặc phân phối bất kỳ khoản tiền hay tài sản hỗ trợ nào.';
 const NOTE2 = 'Các hoạt động hỗ trợ trong tương lai được định hướng theo hình thức kết nối trực tiếp giữa đơn vị hỗ trợ và người được hỗ trợ, sau khi hoàn thiện các điều kiện pháp lý và quy chế vận hành.';
 
 // Hình minh họa tự vẽ: hai bàn tay nâng trái tim, mặt trời phía sau
@@ -38,11 +38,11 @@ function Illustration() {
 }
 
 export default function TiepSuc() {
-  const all = ['TIẾP SỨC CÙNG NGƯỜI BÁN VÉ SỐ', INTRO, PLAN, 'Lưu ý quan trọng', NOTE1, NOTE2].join('. ');
+  const all = ['TIẾP SỨC CÙNG CỘNG ĐỒNG MƯU SINH', INTRO, PLAN, 'Lưu ý quan trọng', NOTE1, NOTE2].join('. ');
   return (
     <article className="doc tiep-suc">
       <Illustration />
-      <h1 className="ts-title">TIẾP SỨC CÙNG NGƯỜI BÁN VÉ SỐ</h1>
+      <h1 className="ts-title">TIẾP SỨC CÙNG CỘNG ĐỒNG MƯU SINH</h1>
       <div className="center"><SpeakButton text={all} label="Đọc trang này cho tôi nghe" /></div>
 
       <p className="ts-lead">{INTRO}</p>

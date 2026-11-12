@@ -1,4 +1,4 @@
-# Cộng Đồng Vé Số
+# Cộng Đồng Mưu Sinh
 
 **Kết nối bằng công nghệ – Chia sẻ bằng tình người.** Nền tảng cộng đồng miễn phí kết nối đại lý vé số, người bán vé số dạo / cố định, người mua và người muốn hỗ trợ tại Việt Nam.
 

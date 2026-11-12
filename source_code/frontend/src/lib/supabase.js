@@ -29,6 +29,21 @@ export function errText(e) {
   if (m.includes('rate limit')) return 'Thao tác quá nhanh, vui lòng thử lại sau ít phút.';
   if (m.includes('row-level security') || m.includes('permission denied')) return 'Bạn không có quyền thực hiện thao tác này.';
   if (m.includes('Failed to fetch')) return 'Không có mạng. Vui lòng kiểm tra kết nối.';
+  // Lỗi xác thực bằng số điện thoại / mã OTP
+  if (m.includes('Unsupported phone provider') || m.includes('Phone signups are disabled') || m.includes('phone_provider_disabled'))
+    return 'Đăng ký bằng số điện thoại đang hoàn thiện, chưa sử dụng được. Vui lòng dùng email.';
+  if (m.includes('Signups not allowed for otp') || m.includes('otp_disabled'))
+    return 'Số điện thoại này chưa đăng ký tài khoản. Hãy chọn "Đăng ký".';
+  if (m.includes('Token has expired or is invalid') || m.includes('otp_expired'))
+    return 'Mã xác minh không đúng hoặc đã hết hạn. Hãy kiểm tra lại hoặc bấm "Gửi lại mã".';
+  if (m.includes('only request this after') || m.includes('once every 60 seconds'))
+    return 'Vui lòng chờ khoảng 1 phút rồi mới gửi lại mã.';
+  if (m.includes('Invalid phone number') || m.includes('validation_failed'))
+    return 'Số điện thoại chưa đúng (ví dụ: 0912345678).';
+  if (m.includes('Phone number already') || m.includes('phone_exists') || m.includes('already been registered'))
+    return 'Số điện thoại này đã gắn với một tài khoản khác. Hãy đăng nhập bằng số đó hoặc liên hệ quản trị viên.';
+  if (m.includes('Error sending') && m.toLowerCase().includes('sms'))
+    return 'Chưa gửi được tin nhắn mã xác minh. Vui lòng thử lại sau hoặc dùng email.';
   return m;
 }
 

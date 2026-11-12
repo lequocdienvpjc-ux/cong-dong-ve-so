@@ -99,7 +99,7 @@ export function voiceErrorText(code) {
   switch (code) {
     case 'not-allowed':
       return isNative()
-        ? 'Ứng dụng chưa được phép dùng micro. Hãy bấm "Cho phép" khi điện thoại hỏi, hoặc vào Cài đặt → Ứng dụng → Cộng Đồng Vé Số → Quyền → Micro → Cho phép.'
+        ? 'Ứng dụng chưa được phép dùng micro. Hãy bấm "Cho phép" khi điện thoại hỏi, hoặc vào Cài đặt → Ứng dụng → Cộng Đồng Mưu Sinh → Quyền → Micro → Cho phép.'
         : 'Chưa được phép dùng micro. Bấm biểu tượng ổ khóa cạnh địa chỉ web → Micro → Cho phép, rồi bấm 🎤 lại.';
     case 'service-not-allowed':
       return isIOS() && isStandalone()

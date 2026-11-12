@@ -19,7 +19,8 @@ img { max-width: 100%; }
 .topbar { background: var(--blue); color: #fff; display: flex; align-items: center; gap: 10px;
   padding: calc(8px + env(safe-area-inset-top)) 12px 8px; position: sticky; top: 0; z-index: 1000; }
 .topbar img { width: 48px; height: 48px; object-fit: contain; display: block; filter: drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
-.topbar .title { font-weight: 800; font-size: 1.05rem; line-height: 1.15; flex: 1; }
+.topbar .title { font-weight: 800; font-size: clamp(.92rem, 4.4vw, 1.05rem); line-height: 1.15; flex: 1; min-width: 0; white-space: nowrap; }
+.topbar .title small { white-space: normal; }
 .topbar .title small { display: block; font-weight: 500; font-size: .72rem; color: #fde68a; }
 .topbar .icon-btn { background: transparent; border: 2px solid rgba(255,255,255,.5); color: #fff; border-radius: 12px;
   min-width: 48px; min-height: 48px; font-size: 1.1rem; position: relative; }
@@ -186,7 +187,7 @@ table.tbl { width: 100%; border-collapse: collapse; background: #fff; border: 1p
 .bubble.theirs .time { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .doc .speak-wrap { margin: 2px 0 8px; }
 
-/* Trang Tiếp sức cùng người bán vé số */
+/* Trang Tiếp sức cùng cộng đồng mưu sinh */
 .ts-illus { width: 100%; max-width: 420px; display: block; margin: 0 auto 6px; }
 .ts-title { text-align: center; color: var(--red); font-size: 1.5rem; margin: 6px 0 8px; }
 .ts-lead { font-size: 1.08rem; font-weight: 600; }
@@ -195,3 +196,23 @@ table.tbl { width: 100%; border-collapse: collapse; background: #fff; border: 1p
 .ts-warn h2 { color: var(--red); margin: 0 0 6px; font-size: 1.1rem; }
 .ts-entry { display: flex !important; gap: 12px; align-items: center; text-decoration: none; color: inherit; background: #fffbea; border-color: var(--gold); }
 .ts-entry .ico { font-size: 2rem; }
+
+/* Thông tin người sáng lập (trang Giới thiệu / Liên hệ) */
+.founder-card { background: #fff; border: 2px solid var(--gold); border-radius: 14px; padding: 14px 16px; margin: 10px 0 14px; box-shadow: 0 2px 8px rgba(30,64,175,.08); scroll-margin-top: 80px; }
+.founder-brand { font-weight: 900; color: #1e40af; font-size: 1.25rem; margin: 0 0 6px; letter-spacing: .3px; }
+.founder-desc { margin: 0 0 10px; }
+.founder-info { display: grid; grid-template-columns: max-content 1fr; gap: 8px 12px; margin: 0; align-items: center; }
+.founder-info dt { color: var(--muted, #555); font-weight: 600; }
+.founder-info dd { margin: 0; }
+.founder-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.founder-info a.btn { text-decoration: none; word-break: break-all; }
+@media (max-width: 420px) { .founder-info { grid-template-columns: 1fr; gap: 2px; } .founder-info dd { margin-bottom: 8px; } }
+
+/* Đăng ký: chọn cách đăng nhập, điều kiện tuổi, đăng ký hỗ trợ, ô mã OTP */
+.method-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.method-tabs button { min-height: 52px; border-radius: 12px; border: 2px solid var(--line); background: #fff; font-size: 1rem; font-weight: 700; color: var(--ink); }
+.method-tabs button.on { border-color: #1e40af; background: #e8eefc; color: #1e40af; }
+.choice-box { border: 2px solid var(--line); border-radius: 12px; padding: 8px 12px; margin: 10px 0; }
+.choice-box legend { font-weight: 800; padding: 0 6px; }
+.assist-guide { background: #f0f7ff; border-radius: 10px; padding: 10px 12px; margin-top: 6px; }
+.otp-input { font-size: 1.8rem !important; letter-spacing: .5em; text-align: center; font-weight: 800; }

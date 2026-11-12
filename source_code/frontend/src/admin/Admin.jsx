@@ -40,7 +40,7 @@ export default function Admin() {
   return (
     <div className="admin">
       <aside>
-        <div className="brand"><img src={logo} alt="" /><div>Quản trị<br /><small style={{ color: '#fde68a' }}>Cộng Đồng Vé Số</small></div></div>
+        <div className="brand"><img src={logo} alt="" /><div>Quản trị<br /><small style={{ color: '#fde68a' }}>Cộng Đồng Mưu Sinh</small></div></div>
         {MENU.map(([to, label]) => <NavLink key={to} to={'/admin/' + to} end={!to.includes('?')}>{label}</NavLink>)}
         <hr style={{ borderColor: 'rgba(255,255,255,.2)' }} />
         <div className="small" style={{ color: '#cbd5e1' }}>{profile.display_name}<br />{ADMIN_ROLES[profile.admin_role]}</div>

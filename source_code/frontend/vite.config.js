@@ -17,8 +17,8 @@ export default defineConfig({
       disable: process.env.CAPACITOR === '1',
       includeAssets: ['favicon.png', 'apple-touch-icon.png', 'logo.png'],
       manifest: {
-        name: 'Cộng Đồng Vé Số',
-        short_name: 'Cộng Đồng Vé Số',
+        name: 'Cộng Đồng Mưu Sinh',
+        short_name: 'Cộng Đồng Mưu Sinh',
         description: 'Kết nối bằng công nghệ – Chia sẻ bằng tình người',
         lang: 'vi',
         theme_color: '#1e40af',

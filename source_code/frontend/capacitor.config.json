@@ -1,6 +1,6 @@
 {
   "appId": "vn.congdongveso.app",
-  "appName": "Cộng Đồng Vé Số",
+  "appName": "Cộng Đồng Mưu Sinh",
   "webDir": "dist",
   "android": { "allowMixedContent": false },
   "server": { "androidScheme": "https" }

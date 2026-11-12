@@ -5,6 +5,7 @@ import { useAuth } from '../lib/auth.jsx';
 import { getPosition } from '../lib/geo.js';
 import { ROLES, NEED_STATUS, PROVINCES, ADMIN_ROLES, isValidVnPhone, normalizePhone } from '@shared/constants.js';
 import { Avatar, Field, Msg, VoiceInput } from '../components/ui.jsx';
+import LinkPhone from '../components/LinkPhone.jsx';
 
 const EDITABLE = ['display_name', 'phone', 'show_phone', 'province', 'ward', 'area_note', 'bio', 'roles', 'need_status',
   'active_status', 'lat', 'lng', 'show_location', 'adult_confirmed', 'notify_connections', 'notify_replies', 'notify_support', 'avatar_url'];
@@ -67,7 +68,7 @@ export default function Me() {
       <div className="card list-item">
         <Avatar url={f.avatar_url} />
         <div className="grow">
-          <b>{profile.display_name}</b><div className="small muted">{user.email}</div>
+          <b>{profile.display_name}</b><div className="small muted">{user.email || (user.phone ? '+' + user.phone : '')}</div>
           {profile.admin_role !== 'member' && <span className="tag">{ADMIN_ROLES[profile.admin_role]}</span>}
         </div>
       </div>
@@ -137,7 +138,8 @@ export default function Me() {
 
       <h2>Tài khoản</h2>
       <div className="stack">
-        <Link className="btn secondary block" to="/doi-mat-khau">🔑 Đổi mật khẩu</Link>
+        <LinkPhone />
+        {user.email && <Link className="btn secondary block" to="/doi-mat-khau">🔑 Đổi mật khẩu</Link>}
         <Link className="btn ghost block" to="/gioi-thieu">ℹ️ Giới thiệu &amp; Quy định</Link>
         <button type="button" className="btn ghost block" onClick={signOut}>Đăng xuất</button>
         <button type="button" className="btn ghost block" style={{ color: 'var(--red)' }} onClick={deleteAccount}>Xóa tài khoản của tôi</button>

@@ -34,7 +34,7 @@ export default function Support() {
   return (
     <div>
       <h1>Bảng tương trợ</h1>
-      <Link to="/tiep-suc" className="card ts-entry" style={{ marginBottom: 12 }}><span className="ico" aria-hidden="true">💛</span><span><b>Tiếp sức cùng người bán vé số</b><br /><span className="small muted">Định hướng phát triển – đang nghiên cứu</span></span></Link>
+      <Link to="/tiep-suc" className="card ts-entry" style={{ marginBottom: 12 }}><span className="ico" aria-hidden="true">💛</span><span><b>Tiếp sức cùng cộng đồng mưu sinh</b><br /><span className="small muted">Định hướng phát triển – đang nghiên cứu</span></span></Link>
       <div className="row" style={{ marginBottom: 10 }}>
         <Link className="btn danger grow" to="/dang-bai?loai=can_giup">🆘 Tôi cần giúp đỡ</Link>
         <Link className="btn green grow" to="/dang-bai?loai=muon_giup">🤝 Tôi muốn giúp</Link>

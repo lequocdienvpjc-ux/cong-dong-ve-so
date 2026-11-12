@@ -1,4 +1,4 @@
-# Hướng dẫn sử dụng – Cộng Đồng Vé Số
+# Hướng dẫn sử dụng – Cộng Đồng Mưu Sinh
 
 **Kết nối bằng công nghệ – Chia sẻ bằng tình người.** Cộng đồng miễn phí: trọng tâm là kết nối đại lý vé số với người bán vé số dạo, đồng thời là nơi mọi người đăng nhu cầu, tìm người hỗ trợ, tìm việc làm nhỏ và chia sẻ với người đang cần.
 Ứng dụng **không** mua bán, đặt, thanh toán, giao hay phân phối vé số.

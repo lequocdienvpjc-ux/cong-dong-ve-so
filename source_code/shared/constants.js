@@ -77,6 +77,12 @@ export function isValidVnPhone(p = '') {
   return /^0(3|5|7|8|9)\d{8}$/.test(normalizePhone(p));
 }
 
+// Dạng quốc tế dùng cho xác thực OTP qua Supabase: 0912345678 -> +84912345678
+export function toE164Vn(p = '') {
+  const n = normalizePhone(p);
+  return isValidVnPhone(n) ? '+84' + n.slice(1) : null;
+}
+
 export function formatKm(km) {
   if (km == null) return '';
   return km < 1 ? `${Math.round(km * 1000)} m` : `${km.toFixed(1)} km`;

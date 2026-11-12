@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       <div className="home-hero">
-        <img src={logo} alt="Logo Cộng Đồng Vé Số" />
+        <img src={logo} alt="Logo Cộng Đồng Mưu Sinh" />
         <p className="slogan">KẾT NỐI BẰNG CÔNG NGHỆ – CHIA SẺ BẰNG TÌNH NGƯỜI</p>
         <p className="small muted" style={{ margin: '4px 0 0' }}>Không thu phí kết nối – Không lấy hoa hồng – Chỉ giúp mọi người tìm thấy nhau.</p>
         {user && <p className="muted" style={{ margin: '4px 0 0' }}>Xin chào, <b>{profile?.display_name}</b></p>}
@@ -27,7 +27,7 @@ export default function Home() {
 
       <Link to="/tiep-suc" className="card ts-entry" style={{ marginTop: 12 }}>
         <span className="ico" aria-hidden="true">💛</span>
-        <span className="grow"><b>TIẾP SỨC CÙNG NGƯỜI BÁN VÉ SỐ</b><br /><span className="small muted">Định hướng phát triển – đang nghiên cứu</span></span>
+        <span className="grow"><b>TIẾP SỨC CÙNG CỘNG ĐỒNG MƯU SINH</b><br /><span className="small muted">Định hướng phát triển – đang nghiên cứu</span></span>
         <span aria-hidden="true" style={{ fontSize: '1.4rem' }}>›</span>
       </Link>
 
@@ -55,7 +55,7 @@ export default function Home() {
         Không đăng dự đoán kết quả xổ số.
       </div>
       <p className="footer-note">
-        <Link to="/gioi-thieu">Giới thiệu</Link> · <Link to="/quy-dinh">Quy định &amp; quyền riêng tư</Link> · <Link to="/cai-dat-app">Cài ứng dụng</Link>
+        <Link to="/gioi-thieu">Giới thiệu</Link> · <Link to="/lien-he">Liên hệ</Link> · <Link to="/quy-dinh">Quy định &amp; quyền riêng tư</Link> · <Link to="/cai-dat-app">Cài ứng dụng</Link>
       </p>
     </div>
   );

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { findBanned, normalizePhone, isValidVnPhone, formatKm, PROVINCES, ROLES } from '../../shared/constants.js';
+import { findBanned, normalizePhone, isValidVnPhone, toE164Vn, formatKm, PROVINCES, ROLES } from '../../shared/constants.js';
 
 test('chặn nội dung dự đoán số / mua bán vé', () => {
   assert.equal(findBanned('Hôm nay SOI CẦU miền Nam'), 'soi cầu');
@@ -26,4 +26,11 @@ test('danh mục', () => {
   assert.equal(PROVINCES.length, 34);
   assert.equal(new Set(PROVINCES).size, 34);
   assert.equal(Object.keys(ROLES).length, 6);
+});
+
+test('đổi số điện thoại sang dạng quốc tế cho OTP', () => {
+  assert.equal(toE164Vn('0912 345 678'), '+84912345678');
+  assert.equal(toE164Vn('+84 358123456'), '+84358123456');
+  assert.equal(toE164Vn('0123'), null);
+  assert.equal(toE164Vn(''), null);
 });
